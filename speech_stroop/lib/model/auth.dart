@@ -65,8 +65,16 @@ Future<http.Response> getUserByTel(String tel) async {
   Map<String, String> qParams = {
     'tel': tel,
   };
-  final uri =
-      Uri.http('speech-stroop.herokuapp.com', '/auth/profile_tel', qParams);
+
+  // parse hostname from baseUrl config
+  String hostName = "";
+  if (Uri.parse(APIPath.baseUrl).port == 0) {
+    hostName = Uri.parse(APIPath.baseUrl).host;
+  } else {
+    hostName =
+        "${Uri.parse(APIPath.baseUrl).host}:${Uri.parse(APIPath.baseUrl).port}";
+  }
+  final uri = Uri.http(hostName, '/auth/profile_tel', qParams);
   final res =
       await http.get(uri, headers: {'Content-Type': 'application/json'});
 
