@@ -37,13 +37,8 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     userName = '';
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _asyncFunc();
-      setState(() {
-        userName = userProfile.username;
-        bestScores = getHighestScores();
-        latestScores = getLatestScores();
-      });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncFunc();
     });
 
     super.initState();
@@ -53,6 +48,11 @@ class _BodyState extends State<Body> {
     await getUserProfile(false);
     await getHistory();
     await getBadge(false);
+    setState(() {
+      userName = userProfile.username;
+      bestScores = getHighestScores();
+      latestScores = getLatestScores();
+    });
   }
 
   @override
