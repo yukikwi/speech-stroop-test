@@ -11,7 +11,7 @@ class SecondaryButton extends StatelessWidget {
   final String text;
   // final HandleFunc handler;
   final ButtonType buttonType;
-  final void Function() handler;
+  final dynamic handler;
 
   SecondaryButton(this.text, this.handler,
       [this.buttonType = ButtonType.small]);
@@ -32,9 +32,7 @@ class SecondaryButton extends StatelessWidget {
                   MaterialStateProperty.all(buttonStyle[buttonType].item1),
               shadowColor: MaterialStateProperty.all(Colors.transparent),
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-          onPressed: () {
-            handler();
-          },
+          onPressed: () => handler(),
           child: Padding(
             padding: const EdgeInsets.only(
               top: 10,

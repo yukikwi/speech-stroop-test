@@ -7,7 +7,7 @@ import 'package:speech_stroop/enums.dart';
 class PrimaryButton extends StatelessWidget {
   final String text;
   final ButtonType buttonType;
-  final void Function() handler;
+  final dynamic handler;
 
   PrimaryButton(this.text, this.handler, [this.buttonType = ButtonType.small]);
 
@@ -41,9 +41,7 @@ class PrimaryButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(Colors.transparent),
             shadowColor: MaterialStateProperty.all(Colors.transparent),
           ),
-          onPressed: () {
-            handler();
-          },
+          onPressed: () => handler(),
           child: Padding(
             padding: const EdgeInsets.only(
               top: 10,
