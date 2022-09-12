@@ -26,7 +26,28 @@ class _BodyState extends State<Body> {
 
   @override
   void initState() {
+    print("Body_Break loaded");
     super.initState();
+  }
+
+  void startQuiz() {
+    sectionNumber++;
+    answered = -1;
+    switch (sectionNumber) {
+      case 2:
+        stress.break1 = stressLevel.toInt();
+        arousel.break1 = arouselLevel.toInt();
+        break;
+      case 3:
+        stress.break2 = stressLevel.toInt();
+        arousel.break2 = arouselLevel.toInt();
+        break;
+      default:
+        break;
+    }
+    healthScores = HealthScores(stress, arousel);
+
+    Navigator.pushNamed(context, StroopTestScreen.routeName);
   }
 
   @override
@@ -49,26 +70,8 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 20,
           ),
-          PrimaryButton('เริ่มแบบทดสอบที่ ${sectionNumber + 1}', () async {
-            sectionNumber++;
-            answered = -1;
-            switch (sectionNumber) {
-              case 2:
-                stress.break1 = stressLevel.toInt();
-                arousel.break1 = arouselLevel.toInt();
-                break;
-              case 3:
-                stress.break2 = stressLevel.toInt();
-                arousel.break2 = arouselLevel.toInt();
-                break;
-              default:
-                break;
-            }
-            healthScores = HealthScores(stress, arousel);
-            await requsetPermission(Permission.microphone);
-
-            Navigator.pushNamed(context, StroopTestScreen.routeName);
-          })
+          PrimaryButton(
+              'เริ่มแบบทดสอบที่ ${sectionNumber + 1}', () => startQuiz())
         ]),
       ),
     );

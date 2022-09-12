@@ -27,6 +27,18 @@ class _BodyState extends State<Body> {
     super.initState();
   }
 
+  void startQuiz() {
+    print("startQuiz called");
+    sectionNumber++;
+    answered = -1;
+    stress.start = stressLevel.toInt();
+    arousel.start = arouselLevel.toInt();
+    healthScores = HealthScores(stress, arousel);
+
+    // await requsetPermission(Permission.microphone);
+    Navigator.pushNamed(context, StroopTestScreen.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -47,16 +59,8 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 20,
           ),
-          PrimaryButton('เริ่มแบบทดสอบที่ ${sectionNumber + 1}', () async {
-            sectionNumber++;
-            answered = -1;
-            stress.start = stressLevel.toInt();
-            arousel.start = arouselLevel.toInt();
-            healthScores = HealthScores(stress, arousel);
-
-            await requsetPermission(Permission.microphone);
-            Navigator.pushNamed(context, StroopTestScreen.routeName);
-          })
+          PrimaryButton(
+              'เริ่มแบบทดสอบที่ ${sectionNumber + 1}', () => startQuiz())
         ]),
       ),
     );
