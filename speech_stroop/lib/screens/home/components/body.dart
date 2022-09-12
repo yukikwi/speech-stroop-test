@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
@@ -15,6 +16,7 @@ import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 
 import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro1.dart';
 import 'package:speech_stroop/theme.dart';
+import 'dart:html';
 
 import 'package:speech_stroop/utils/directory.dart';
 import 'package:speech_stroop/utils/permission.dart';
@@ -53,6 +55,19 @@ class _BodyState extends State<Body> {
       bestScores = getHighestScores();
       latestScores = getLatestScores();
     });
+  }
+
+  startTest() async {
+    dstMicTest = 'test';
+    if (!kIsWeb) {
+      await getDir();
+      await requsetPermission(Permission.microphone);
+    } else {
+      await window.navigator.mediaDevices.getUserMedia({"audio": true});
+    }
+    userHistory.isEmpty
+        ? showSimpleModalDialogTutorial(context)
+        : Navigator.pushNamed(context, MicrophoneTestScreen.routeName);
   }
 
   @override
@@ -150,14 +165,7 @@ class _BodyState extends State<Body> {
           ),
           PrimaryButton(
             "เริ่มทดสอบ",
-            () async => {
-              dstMicTest = 'test',
-              await getDir(),
-              await requsetPermission(Permission.microphone),
-              userHistory.isEmpty
-                  ? showSimpleModalDialogTutorial(context)
-                  : Navigator.pushNamed(context, MicrophoneTestScreen.routeName)
-            },
+            () => startTest(),
             ButtonType.medium,
           ),
           SecondaryButton(
