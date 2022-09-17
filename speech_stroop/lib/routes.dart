@@ -37,7 +37,6 @@ final Map<String, WidgetBuilder> routes = {
   // Auth
   LoginScreen.routeName: (context) => const LoginScreen(),
   TermsConditionsScreen.routeName: (context) => const TermsConditionsScreen(),
-  RegisterScreen.routeName: (context) => const RegisterScreen(),
   Register2Screen.routeName: (context) => const Register2Screen(),
   StressRegisterScreen.routeName: (context) => const StressRegisterScreen(),
   SleepRegisterScreen.routeName: (context) => const SleepRegisterScreen(),

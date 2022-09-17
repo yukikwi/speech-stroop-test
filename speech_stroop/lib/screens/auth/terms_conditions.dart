@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_stroop/components/button/floating_button.dart';
 import 'package:speech_stroop/constants.dart';
-import 'package:speech_stroop/screens/auth/register.dart';
+import 'package:speech_stroop/screens/auth/register2.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 
 class TermsConditionsScreen extends StatefulWidget {
@@ -153,7 +153,7 @@ class _TermsConditionsScreenWidgetState extends State<TermsConditionsScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const RegisterScreen()))
+                                        const Register2Screen()))
                           }
                       })
                 ],
