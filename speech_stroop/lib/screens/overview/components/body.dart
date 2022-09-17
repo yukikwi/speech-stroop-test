@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/constants.dart';
-import 'package:speech_stroop/screens/auth/login.dart';
+
+import '../../auth/terms_conditions.dart';
 
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
@@ -20,7 +21,7 @@ class _BodyState extends State<Body> {
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => {
-          Navigator.pushNamed(context, LoginScreen.routeName),
+          Navigator.pushNamed(context, TermsConditionsScreen.routeName),
         },
         child: SafeArea(
           child: Column(
