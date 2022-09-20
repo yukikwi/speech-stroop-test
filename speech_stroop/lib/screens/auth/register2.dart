@@ -27,6 +27,7 @@ class _Register2ScreenState extends State<Register2Screen> {
   TextEditingController nameController;
   TextEditingController surnameController;
   TextEditingController emailController;
+  TextEditingController telController;
   TextEditingController lastFourIdController;
   TextEditingController dobController;
   DateTime dob;
@@ -41,6 +42,7 @@ class _Register2ScreenState extends State<Register2Screen> {
     nameController = TextEditingController();
     surnameController = TextEditingController();
     emailController = TextEditingController();
+    telController = TextEditingController();
     lastFourIdController = TextEditingController();
     dobController = TextEditingController();
   }
@@ -146,6 +148,28 @@ class _Register2ScreenState extends State<Register2Screen> {
                                   return 'โปรดระบุอีเมล';
                                 } else if (!isEmailValid) {
                                   return 'โปรดระบุอีเมลให้ถูกต้อง';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0, deviceHeight(context) * 0.02, 0, 0),
+                            // padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: TextFormFieldCustom(
+                              telController,
+                              'เบอร์โทรศัพท์',
+                              TextInputType.phone,
+                              (val) {
+                                if (val.isEmpty) {
+                                  return 'โปรดระบุเบอร์โทรศัพท์';
+                                }
+                                if (val.length != 10) {
+                                  return 'เบอร์โทรศัพท์ประกอบไปด้วย 10 ตัวอักษร';
+                                }
+                                if (int.tryParse(val) == null) {
+                                  return 'โปรดกรอกตัวเลขเท่านั้น';
                                 }
                                 return null;
                               },
@@ -310,7 +334,7 @@ class _Register2ScreenState extends State<Register2Screen> {
                                 ),
                                 const Flexible(
                                   child: Text(
-                                    """หากคุณไม่มีภาวะตาบอดสี โปรดทำเครื่องหมายถูกในช่องว่างเพื่อยืนยัน เนื่องจากผู้ที่มีภาวะตาบอดสีจะไม่สามารถทำแบบทดสอบภายในแอปพลิเคชัน Speech Stroop ได้""",
+                                    """หากคุณไม่มีภาวะตาบอดสี โปรดทำเครื่องหมายถูกในช่องว่างเพื่อยืนยัน""",
                                     style: TextStyle(
                                         fontSize: 16, letterSpacing: 0.5),
                                   ),
@@ -356,6 +380,7 @@ class _Register2ScreenState extends State<Register2Screen> {
     registerReq.name = nameController.text;
     registerReq.surname = surnameController.text;
     registerReq.email = emailController.text;
+    registerReq.tel = telController.text;
     registerReq.lastFourId = lastFourIdController.text;
     registerReq.dateOfBirth = DateTime(splitDob[0], splitDob[1], splitDob[2]);
     registerReq.gender = genderValue ?? 'unknown';
