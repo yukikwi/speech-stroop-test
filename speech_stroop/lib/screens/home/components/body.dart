@@ -16,7 +16,8 @@ import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 
 import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro1.dart';
 import 'package:speech_stroop/theme.dart';
-import 'dart:html';
+import "package:speech_stroop/utils/no_import.dart"
+    if (dart.library.html) "dart:html";
 
 import 'package:speech_stroop/utils/directory.dart';
 import 'package:speech_stroop/utils/permission.dart';
@@ -63,7 +64,12 @@ class _BodyState extends State<Body> {
       await getDir();
       await requsetPermission(Permission.microphone);
     } else {
-      await window.navigator.mediaDevices.getUserMedia({"audio": true});
+      try {
+        if (window != null)
+          await window.navigator.mediaDevices.getUserMedia({"audio": true});
+      } on Exception catch (_) {
+        print('this method is for web only');
+      }
     }
     userHistory.isEmpty
         ? showSimpleModalDialogTutorial(context)
