@@ -173,7 +173,10 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
         isListening = false;
       });
       speech.stop();
-      navigatePage();
+      // add delayed to wait speech 2 text process finished
+      Future.delayed(Duration(milliseconds: 300), () {
+        navigatePage();
+      });
     }
   }
 
