@@ -7,7 +7,6 @@ import 'package:speech_stroop/model/update_user.dart';
 import 'package:speech_stroop/model/user.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-import 'package:speech_stroop/screens/auth/register.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/fail_color_test.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/pass_color_test.dart';
 
@@ -17,6 +16,7 @@ import 'package:speech_stroop/components/button/mic_button.dart';
 
 import 'package:speech_stroop/theme.dart';
 import 'package:tuple/tuple.dart';
+import '../../auth/experimental_settoken.dart';
 import '../../stroop/stroop_test/stroopHelper/speech_check.dart';
 
 class ColorTestScreen extends StatefulWidget {

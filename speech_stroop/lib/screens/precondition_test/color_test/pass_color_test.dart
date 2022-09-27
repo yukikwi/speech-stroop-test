@@ -6,12 +6,12 @@ import 'package:speech_stroop/components/loading_screen.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/auth.dart';
 import 'package:speech_stroop/model/user.dart';
-import 'package:speech_stroop/screens/auth/register.dart';
 import 'package:speech_stroop/screens/home/home_screen.dart';
 import 'package:speech_stroop/screens/profile/profile_screen.dart';
 import 'dart:convert';
 
 import '../../../theme.dart';
+import '../../auth/experimental_settoken.dart';
 
 class PassColorTestScreen extends StatefulWidget {
   const PassColorTestScreen({Key key}) : super(key: key);
@@ -75,20 +75,20 @@ class _PassColorTestState extends State<PassColorTestScreen> {
                           });
 
                           precondition.isPassAll = true;
-                          registerReq.precondition = precondition;
+                          // registerReq.precondition = precondition;
 
-                          var res = await register(registerReq);
+                          // var res = await register(registerReq);
 
-                          setState(() {
-                            loading = false;
-                          });
+                          // setState(() {
+                          //   loading = false;
+                          // });
 
-                          //TODO: login with this user
-                          if (res.statusCode == 200) {
-                            auth = Auth.fromJson(jsonDecode(res.body));
-                            print("login success");
-                            Navigator.pushNamed(context, HomeScreen.routeName);
-                          }
+                          // //TODO: login with this user
+                          // if (res.statusCode == 200) {
+                          //   auth = Auth.fromJson(jsonDecode(res.body));
+                          //   print("login success");
+                          //   Navigator.pushNamed(context, HomeScreen.routeName);
+                          // }
                         }),
                 )
               ],

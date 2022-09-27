@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
-import 'package:speech_stroop/screens/auth/register.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/color_test.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
 import 'package:speech_stroop/theme.dart';
+
+import '../../screens/auth/experimental_settoken.dart';
 
 class FailMicrophoneTestScreen extends StatefulWidget {
   const FailMicrophoneTestScreen({Key key}) : super(key: key);

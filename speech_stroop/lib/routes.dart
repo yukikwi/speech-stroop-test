@@ -1,11 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:speech_stroop/components/microphone_test/fail_microphone_test.dart';
 import 'package:speech_stroop/components/microphone_test/microphone_test.dart';
+import 'package:speech_stroop/screens/auth/experimental_settoken.dart';
 import 'package:speech_stroop/screens/auth/login.dart';
-import 'package:speech_stroop/screens/auth/register.dart';
-import 'package:speech_stroop/screens/auth/register2.dart';
-import 'package:speech_stroop/screens/auth/register_sleep.dart';
-import 'package:speech_stroop/screens/auth/register_stress.dart';
 import 'package:speech_stroop/screens/auth/terms_conditions.dart';
 import 'package:speech_stroop/screens/history_all/history_all_screen.dart';
 import 'package:speech_stroop/screens/history/history_screen.dart';
@@ -37,9 +34,7 @@ final Map<String, WidgetBuilder> routes = {
   // Auth
   LoginScreen.routeName: (context) => const LoginScreen(),
   TermsConditionsScreen.routeName: (context) => const TermsConditionsScreen(),
-  Register2Screen.routeName: (context) => const Register2Screen(),
-  StressRegisterScreen.routeName: (context) => const StressRegisterScreen(),
-  SleepRegisterScreen.routeName: (context) => const SleepRegisterScreen(),
+  ExperimentalSetToken.routeName: (context) => const ExperimentalSetToken(),
 
   // PreCondition Test
   IntroductionScreen.routeName: (context) => const IntroductionScreen(),

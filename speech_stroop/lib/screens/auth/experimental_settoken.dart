@@ -5,8 +5,14 @@ import '../../components/button/floating_button.dart';
 import '../../components/custom_appbar.dart';
 import '../../components/loading_screen.dart';
 import '../../constants.dart';
+import '../../model/precondition.dart';
 import '../precondition_test/introduction.dart';
 import 'components/text_form_field.dart';
+
+PreconditionScore colorVisibilityTest = PreconditionScore(0, DateTime.now());
+PreconditionScore readingAbilityTest = PreconditionScore(0, DateTime.now());
+Precondition precondition =
+    Precondition(true, colorVisibilityTest, readingAbilityTest, false);
 
 class ExperimentalSetToken extends StatefulWidget {
   const ExperimentalSetToken({Key key}) : super(key: key);
