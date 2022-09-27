@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_stroop/components/button/floating_button.dart';
 import 'package:speech_stroop/constants.dart';
+import 'package:speech_stroop/screens/auth/experimental_settoken.dart';
 import 'package:speech_stroop/screens/auth/register2.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 
@@ -153,7 +154,7 @@ class _TermsConditionsScreenWidgetState extends State<TermsConditionsScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const Register2Screen()))
+                                        const ExperimentalSetToken()))
                           }
                       })
                 ],
