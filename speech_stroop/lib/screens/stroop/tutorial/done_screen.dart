@@ -33,9 +33,6 @@ class TutorialDoneScreen extends StatelessWidget {
                         PrimaryButton('เริ่มทดสอบ', () {
                           Navigator.pushNamed(context, BreakScreen.routeName);
                         }),
-                        SecondaryButton('กลับหน้าหลัก', () {
-                          Navigator.pushNamed(context, HomeScreen.routeName);
-                        })
                       ],
                     ),
                   ]),
