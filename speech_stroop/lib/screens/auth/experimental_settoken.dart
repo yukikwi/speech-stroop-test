@@ -57,7 +57,7 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
             child: Scaffold(
               resizeToAvoidBottomInset: false,
               key: scaffoldKey,
-              appBar: const CustomAppBar('กรอก Runing number'),
+              appBar: const CustomAppBar('กรอกรหัสการทดลอง'),
               body: SafeArea(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
@@ -69,11 +69,11 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
                             const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                         child: TextFormFieldCustom(
                           tokenController,
-                          'Runing number',
+                          'Experimental code',
                           TextInputType.name,
                           (val) {
                             if (val.isEmpty) {
-                              return 'โปรดระบุ runing number';
+                              return 'โปรดระบุรหัสการทดลอง';
                             }
                             return null;
                           },
