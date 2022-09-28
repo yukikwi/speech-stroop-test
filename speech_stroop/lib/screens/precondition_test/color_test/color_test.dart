@@ -176,7 +176,10 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
         isListening = false;
       });
       speech.stop();
-      navigatePage();
+      // add delayed to wait speech 2 text process finished
+      Future.delayed(Duration(milliseconds: 300), () {
+        navigatePage();
+      });
     }
   }
 
