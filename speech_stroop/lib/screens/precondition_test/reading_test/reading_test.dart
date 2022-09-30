@@ -230,7 +230,7 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     setFeedback(isCorrect);
     resetQuestion();
 
-    if (answeredReadingTest < 6) {
+    if (answeredReadingTest < 6 && isCorrect == true) {
       Future.delayed(durationDelayInterval, () {
         setState(() {
           isInterval = false;

@@ -166,6 +166,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
         setState(() => isListening = true);
         speech.listen(
             onResult: (val) => setState(() {
+                  print("Color test: recog -> ${recogWordColorTest}");
                   recogWordColorTest = val.recognizedWords;
                 }),
             localeId: 'th-TH',
@@ -229,7 +230,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     setFeedback(isCorrect);
     resetQuestion();
 
-    if (answeredColorTest < 6) {
+    if (answeredColorTest < 6 && isCorrect == true) {
       Future.delayed(durationDelayInterval, () {
         setState(() {
           isInterval = false;
