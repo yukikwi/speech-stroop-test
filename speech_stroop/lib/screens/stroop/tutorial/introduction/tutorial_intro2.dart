@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/floating_button.dart';
 import 'package:speech_stroop/screens/stroop/tutorial/components/colorList_box.dart';
-import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro3.dart';
 import 'package:speech_stroop/theme.dart';
+import 'package:speech_stroop/components/button/primary_button.dart';
+import 'package:speech_stroop/components/microphone_test/microphone_test.dart';
+import 'package:speech_stroop/screens/home/components/body.dart';
 
 class TutorialIntroduction2Screen extends StatefulWidget {
   const TutorialIntroduction2Screen({Key key}) : super(key: key);
@@ -82,7 +84,6 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -104,10 +105,34 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                 ],
               ),
               colorListBox(),
-              FloatingButton(() {
-                Navigator.pushNamed(
-                    context, TutorialIntroduction3Screen.routeName);
-              }),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'เมื่อจบแต่ละส่วนจะมีเวลาให้พักโดย ',
+                    style: textTheme()
+                        .titleMedium
+                        .apply(color: Colors.black, fontSizeDelta: 2),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'ไม่กำหนดเวลา',
+                    style: textTheme().titleMedium.apply(
+                        color: Colors.black,
+                        fontSizeDelta: 2,
+                        fontWeightDelta: 1),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              PrimaryButton(
+                  'เริ่มทดลองทำ',
+                  () => {
+                        dstMicTest = 'tutorial',
+                        Navigator.pushNamed(
+                            context, MicrophoneTestScreen.routeName)
+                      }),
+              FloatingButton(() {}, true, false),
             ],
           ),
         ));

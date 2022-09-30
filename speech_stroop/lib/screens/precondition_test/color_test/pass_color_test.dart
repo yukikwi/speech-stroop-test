@@ -7,6 +7,7 @@ import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/components/loading_screen.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/user.dart';
+import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro1.dart';
 
 import '../../../components/microphone_test/microphone_test.dart';
 import '../../../theme.dart';
@@ -60,15 +61,8 @@ class _PassColorTestState extends State<PassColorTestScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: isLogin
-                      ? null
-                      : Text('ลงทะเบียนเสร็จสิ้น',
-                          style: textTheme().headlineMedium),
-                ),
-                Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 80),
-                  child: PrimaryButton('เริ่มการทำแบบทดสอบ', () async {
+                  child: PrimaryButton('วิธีการทดสอบ', () async {
                     setState(() {
                       loading = true;
                     });
@@ -76,7 +70,8 @@ class _PassColorTestState extends State<PassColorTestScreen> {
                     precondition.isPassAll = true;
                     if (!mounted) return;
                     // TODO: teach how to do speech stroop test before go to tutorial test
-                    Navigator.pushNamed(context, TutorialTestScreen.routeName);
+                    Navigator.pushNamed(
+                        context, TutorialIntroduction1Screen.routeName);
                   }),
                 )
               ],
