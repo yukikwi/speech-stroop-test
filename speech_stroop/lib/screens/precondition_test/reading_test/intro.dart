@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
 import 'package:speech_stroop/theme.dart';
+import 'package:speech_stroop/utils/permission.dart';
+import "package:speech_stroop/utils/no_import.dart"
+    if (dart.library.html) "dart:html";
 
 class IntroReadingTestScreen extends StatefulWidget {
   const IntroReadingTestScreen({Key key}) : super(key: key);
@@ -13,6 +18,21 @@ class IntroReadingTestScreen extends StatefulWidget {
 
 class _IntroReadingTestScreenState extends State<IntroReadingTestScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    if (!kIsWeb) {
+      requsetPermission(Permission.microphone);
+    } else {
+      try {
+        if (window != null)
+          window.navigator.mediaDevices.getUserMedia({"audio": true});
+      } on Exception catch (_) {
+        print('this method is for web only');
+      }
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
