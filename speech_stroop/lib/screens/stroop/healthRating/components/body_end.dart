@@ -37,9 +37,6 @@ class _BodyState extends State<Body> {
     });
     sectionNumber = 0;
     answered = -1;
-    stress.end = stressLevel.toInt();
-    arousel.end = arouselLevel.toInt();
-    healthScores = HealthScores(stress, arousel);
 
     // var tempDir = await getDir();
     // String tempDirPath = tempDir.path;
@@ -57,42 +54,6 @@ class _BodyState extends State<Body> {
     //   }
     // }
 
-    List<String> userBadges = userProfile.badge;
-    List<String> newUserBadge = [];
-
-    // day stack
-    DateTime testDate = DateTime.now();
-    int dayStack = 0;
-    if (checkLatestTestMakeDayStack(testDate)) {
-      dayStack = testDayStack.item2;
-    }
-    // add badge
-    badgesMap.forEach((key, value) {
-      if (value.type == 'correctStack' &&
-          highestCorrectStack >= value.condition) {
-        if (!userBadges.contains(key)) {
-          newUserBadge.add(key);
-        }
-      }
-      if (value.type == 'testDayStack' && dayStack >= value.condition) {
-        if (!userBadges.contains(key)) {
-          newUserBadge.add(key);
-        }
-      }
-    });
-
-    List<String> userBadgeValue = [...userBadges, ...newUserBadge];
-
-    var resBadge = await updateUserBadge(userBadgeValue);
-
-    print(resBadge);
-
-    var resHistory = await setHistory(
-      totalScore,
-      sections,
-      healthScores,
-      newUserBadge,
-    );
     setState(() {
       loading = true;
     });
@@ -114,13 +75,15 @@ class _BodyState extends State<Body> {
                 FloatingActionButtonLocation.centerFloat,
             key: scaffoldKey,
             body: SafeArea(
-              child: Column(mainAxisSize: MainAxisSize.max, children: [
-                const HealthSlider(),
-                const SizedBox(
-                  height: 60,
-                ),
-                PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
-              ]),
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(mainAxisSize: MainAxisSize.max, children: [
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
+                ]),
+              ),
             ),
           );
   }
