@@ -13,8 +13,6 @@ import '../../../theme.dart';
 import '../../../utils/directory.dart';
 import '../../../utils/permission.dart';
 import '../../auth/experimental_settoken.dart';
-import "package:speech_stroop/utils/no_import.dart"
-    if (dart.library.html) "dart:html";
 
 import '../../stroop/tutorial/test/tutorial_test.dart';
 
@@ -76,7 +74,6 @@ class _PassColorTestState extends State<PassColorTestScreen> {
                     });
 
                     precondition.isPassAll = true;
-                    await startTest();
                     if (!mounted) return;
                     // TODO: teach how to do speech stroop test before go to tutorial test
                     Navigator.pushNamed(context, TutorialTestScreen.routeName);
@@ -84,19 +81,5 @@ class _PassColorTestState extends State<PassColorTestScreen> {
                 )
               ],
             ));
-  }
-
-  startTest() async {
-    if (!kIsWeb) {
-      await getDir();
-      await requsetPermission(Permission.microphone);
-    } else {
-      try {
-        if (window != null)
-          await window.navigator.mediaDevices.getUserMedia({"audio": true});
-      } on Exception catch (_) {
-        print('this method is for web only');
-      }
-    }
   }
 }
