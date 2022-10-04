@@ -4,11 +4,6 @@ import mongoose from 'mongoose'
 import { MONGO_URI } from './config'
 import { errorHandler } from './errors'
 import uploadAudioRouter from './routes/audio'
-import authRouter from './routes/auth'
-import badgeRouter from './routes/badge'
-import historyRouter from './routes/history'
-import passportRouter from './routes/passport'
-import userRouter from './routes/user'
 
 const app = express()
 
@@ -18,14 +13,6 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello, Stroop!')
 })
 
-app.use('/auth', authRouter)
-app.use('/badge', badgeRouter)
-
-app.use(passportRouter)
-
-// use token to access
-app.use('/user', userRouter)
-app.use('/history', historyRouter)
 app.use('/upload', uploadAudioRouter)
 
 // Error handling
