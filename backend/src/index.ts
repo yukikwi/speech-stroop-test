@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { MONGO_URI } from './config'
 import { errorHandler } from './errors'
 import uploadAudioRouter from './routes/audio'
+import experimentalRouter from './routes/experimental'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/upload', uploadAudioRouter)
+app.use('/experimental', experimentalRouter)
 
 // Error handling
 app.use(errorHandler)
