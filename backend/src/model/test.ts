@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { ObjectId } from 'mongodb'
+import { QuestionType } from "./question";
 
 const testSchema = new Schema(
   {
@@ -16,15 +17,9 @@ const testSchema = new Schema(
   { timestamps: false },
 )
 
-type Question = {
-  question: string,
-  answer: string,
-  time: number
-}
-
 export type TestType = {
   sectionType: '7congruent-3incongruent' | 'balance' | '3congruent-7incongruent',
-  questions: Question[]
+  questions: Array<QuestionType>
 }
 
 export type testDocument = mongoose.Document & TestType
