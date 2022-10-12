@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import { ObjectId } from 'mongodb'
+import { TestType } from './test'
 const Schema = mongoose.Schema
 
 const experimentalSchema = new Schema(
@@ -8,20 +10,8 @@ const experimentalSchema = new Schema(
       required: true,
     },
     test: {
-      type: Array<{
-        sectionType: {
-          type: String,
-          enum: ['7congruent-3incongruent','balance','3congruent-7incongruent'],
-          required: true
-        },
-        questions: {
-          type: Array<{
-            question: { type: String, required: true },
-            answer: { type: String, required: true },
-            time: { type: Number, required: true },
-          }>
-        }
-      }>
+      type: [ObjectId],
+      required: true
     },
     feedbackType: {
       type: String,
@@ -32,23 +22,10 @@ const experimentalSchema = new Schema(
   { timestamps: true },
 )
 
-type Question = {
-  question: string,
-  answer: string,
-  time: number
-}
-
-type Test = {
-  sectionType: '7congruent-3incongruent' | 'balance' | '3congruent-7incongruent',
-  questions: Question[]
-}
-
 export type experimentalDocument = mongoose.Document & {
   experimentee: string,
-  test: Test[],
+  test: Array<TestType>,
   feedbackType: 'after-question' | 'after-section' | 'after-test'
 }
 
-const Experimental = mongoose.model<experimentalDocument>('Experimental', experimentalSchema)
-
-export { Experimental }
+export const Experimental = mongoose.model<experimentalDocument>('Experimental', experimentalSchema)
