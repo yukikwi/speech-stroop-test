@@ -34,7 +34,8 @@ class SectionScore extends StatelessWidget {
                   child: SectionScoreExpand(
                       s.section,
                       s.score["congruent"] + (s.score["incongruent"] ?? 0),
-                      s.avgReactionTimeMs ?? 0),
+                      s.avgReactionTimeMs ?? 0,
+                      s.questions),
                 ),
             ],
           ),
