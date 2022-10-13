@@ -44,7 +44,7 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
   double _getHeight() {
     double height = 50;
     if (expanded) {
-      height = 540;
+      height = (height + 40) * (stroopQuestionsAmount + 1);
     }
     return height;
   }
@@ -60,87 +60,117 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
       curve: Curves.fastOutSlowIn,
       decoration: BoxDecoration(
           color: softPrimaryColor, borderRadius: BorderRadius.circular(10)),
-      child: Column(children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text(
-            "ส่วนที่ ${widget.section}",
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall
-                .apply(color: Colors.black),
-          ),
-          Text(
-            "${(widget.reactionTime / 1000).toStringAsFixed(2)} วินาที",
-            style:
-                Theme.of(context).textTheme.labelSmall.apply(color: formText),
-          ),
-          // const Spacer(),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              '${((widget.score / stroopQuestionsAmount) * 100).round()}',
-              style: TextStyle(
-                color: secondaryColor,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Row(children: [
+          const Spacer(flex: 1),
+          Container(
+            alignment: Alignment.center,
+            width: 100.0,
+            height: 40.0,
+            child: Text(
+              "ส่วนที่ ${widget.section}",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  .apply(color: Colors.black),
             ),
-            Text(
-              '%',
-              style: TextStyle(
-                color: secondaryColor,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+          ),
+          const Spacer(flex: 1),
+          Container(
+            alignment: Alignment.center,
+            width: 100.0,
+            height: 40.0,
+            child: Text(
+              "${(widget.reactionTime / 1000).toStringAsFixed(2)} วินาที",
+              style:
+                  Theme.of(context).textTheme.labelSmall.apply(color: formText),
             ),
-          ]),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          ),
+          const Spacer(flex: 4),
+          Container(
+            alignment: Alignment.center,
+            width: 100.0,
+            height: 40.0,
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
-                '${widget.score}',
+                '${((widget.score / stroopQuestionsAmount) * 100).round()}',
                 style: TextStyle(
-                  color: primaryColor,
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                '%',
+                style: TextStyle(
+                  color: secondaryColor,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                '/$stroopQuestionsAmount',
-                style: TextStyle(
-                  color: primaryColor.withOpacity(0.4),
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
+            ]),
+          ),
+          const Spacer(flex: 1),
+          Container(
+            alignment: Alignment.center,
+            width: 100.0,
+            height: 40.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${widget.score}',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+                const SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  '/$stroopQuestionsAmount',
+                  style: TextStyle(
+                    color: primaryColor.withOpacity(0.4),
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                expanded = !expanded;
+          const Spacer(flex: 3),
+          Container(
+            alignment: Alignment.center,
+            width: 100.0,
+            height: 40.0,
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  expanded = !expanded;
 
-                Future.delayed(
-                    !expanded
-                        ? const Duration(milliseconds: 0)
-                        : const Duration(milliseconds: 400),
-                    () => {
-                          setState(() {
-                            canExpaned = !canExpaned;
-                          }),
-                        });
-              });
-            },
-            icon: expanded
-                ? Image.asset("assets/images/up.png")
-                : Image.asset("assets/images/down.png"),
+                  Future.delayed(
+                      !expanded
+                          ? const Duration(milliseconds: 0)
+                          : const Duration(milliseconds: 400),
+                      () => {
+                            setState(() {
+                              canExpaned = !canExpaned;
+                            }),
+                          });
+                });
+              },
+              icon: expanded
+                  ? Image.asset("assets/images/up.png")
+                  : Image.asset("assets/images/down.png"),
+            ),
           ),
+          const Spacer(flex: 1),
         ]),
         if (canExpaned == true)
           Column(
@@ -149,50 +179,72 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
               Divider(
                 color: primaryColor.withOpacity(0.3),
                 height: 25,
-                thickness: 2,
+                thickness: 3,
               ),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                 Container(
                   alignment: Alignment.center,
+                  width: 100.0,
+                  height: 40.0,
                   child: Text(
                     "โจทย์",
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .labelLarge
-                        .apply(color: formText),
+                        .titleSmall
+                        .apply(color: primaryColor),
                   ),
                 ),
                 Container(
                   alignment: Alignment.center,
+                  width: 100.0,
+                  height: 40.0,
                   child: Text(
                     "คำตอบของคุณ",
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .labelLarge
-                        .apply(color: formText),
+                        .titleSmall
+                        .apply(color: primaryColor),
                   ),
                 ),
                 Container(
                   alignment: Alignment.center,
+                  width: 100.0,
+                  height: 40.0,
                   child: Text(
-                    "เวลา",
-                    textAlign: TextAlign.left,
+                    "คำตอบที่ถูกต้อง",
+                    textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .labelLarge
-                        .apply(color: formText),
+                        .titleSmall
+                        .apply(color: primaryColor),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 100.0,
+                  height: 40.0,
+                  child: Text(
+                    "เวลา",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        .apply(color: primaryColor),
                   ),
                 ),
                 const SizedBox(
-                  width: 30,
+                  width: 100.0,
+                  height: 40.0,
                 ),
               ]),
               Divider(
                 color: primaryColor.withOpacity(0.3),
                 height: 25,
                 thickness: 2,
+                indent: 15,
+                endIndent: 15,
               ),
               for (int i = 0; i < stroopQuestionsAmount; i++)
                 Column(children: [
@@ -201,73 +253,99 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                       children: [
                         Container(
                           alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
                           child: Text(
                             widget.questions[i].problem["word"],
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.labelLarge.apply(
-                                color: stroopColorsMap[
-                                    widget.questions[i].problem["color"]]),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: stroopColorsMap[
+                                  widget.questions[i].problem["color"]],
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
                           child: widget.questions[i].userAnswer == null ||
                                   widget.questions[i].userAnswer.isEmpty
                               ? Text(
                                   "ไม่ได้ตอบ",
-                                  textAlign: TextAlign.left,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
-                                      .apply(color: formText),
+                                      .apply(color: Colors.black),
                                 )
                               : Text(
                                   widget.questions[i].userAnswer,
-                                  textAlign: TextAlign.left,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
-                                      .apply(color: formText),
+                                      .apply(color: Colors.black),
                                 ),
                         ),
                         Container(
                           alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
+                          child: Text(
+                            widget.questions[i].expectedAnswer,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                .apply(color: Colors.black),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
                           child: widget.questions[i].reactionTimeMs == null
                               ? Text(
                                   "ไม่ได้ตอบ",
-                                  textAlign: TextAlign.left,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
-                                      .apply(color: formText),
+                                      .apply(color: Colors.black),
                                 )
                               : Text(
-                                  "${widget.questions[i].reactionTimeMs / 1000} วินาที",
-                                  textAlign: TextAlign.left,
+                                  "${(widget.questions[i].reactionTimeMs / 1000).toStringAsFixed(2)} วินาที",
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
-                                      .apply(color: formText),
+                                      .apply(color: Colors.black),
                                 ),
                         ),
                         Container(
                           alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
                           child: widget.questions[i].isCorrect
-                              ? Text(
+                              ? const Text(
                                   "ถูก",
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      .apply(color: formText),
+                                  style: TextStyle(
+                                    color: Color(0xFF6FC2A0),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 )
-                              : Text(
+                              : const Text(
                                   "ผิด",
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      .apply(color: formText),
+                                  style: TextStyle(
+                                    color: Color(0xFFDA4F2C),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                         ),
                       ]),
@@ -275,6 +353,8 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                     color: primaryColor.withOpacity(0.3),
                     height: 25,
                     thickness: 1,
+                    indent: 15,
+                    endIndent: 15,
                   ),
                 ]),
             ],
