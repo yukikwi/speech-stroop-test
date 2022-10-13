@@ -64,6 +64,5 @@ mockHistory() {
     totalScore,
     sections,
     healthScores,
-    ['62752a995ec14f7d629ee0d9', '62752aaa5ec14f7d629ee0dc'],
   );
 }

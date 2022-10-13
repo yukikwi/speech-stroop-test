@@ -54,6 +54,12 @@ class _BodyState extends State<Body> {
     //   }
     // }
 
+    await setHistory(
+      totalScore,
+      sections,
+      healthScores,
+    );
+
     setState(() {
       loading = true;
     });

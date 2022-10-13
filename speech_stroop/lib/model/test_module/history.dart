@@ -159,15 +159,14 @@ Future<int> setHistory(
   int totalScore,
   List<Section> sections,
   HealthScores healthScores,
-  List<String> badge,
 ) async {
-  latestTest = History(totalScore, sections, healthScores, badge);
-  var res = await http.post(Uri.parse("${APIPath.baseUrl}/history"),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${auth.token}',
-      },
-      body: jsonEncode(latestTest));
-  print("post: /history " + res.statusCode.toString());
-  return res.statusCode;
+  latestTest = History(totalScore, sections, healthScores, []);
+  // var res = await http.post(Uri.parse("${APIPath.baseUrl}/history"),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ${auth.token}',
+  //     },
+  //     body: jsonEncode(latestTest));
+  // print("post: /history " + res.statusCode.toString());
+  // return res.statusCode;
 }
