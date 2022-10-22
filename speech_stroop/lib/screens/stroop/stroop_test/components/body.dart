@@ -207,6 +207,9 @@ class _BodyState extends State<Body> {
       if (isCorrect) {
         feedback = 'ถูกต้อง';
         feedbackImg = 'assets/images/correct.png';
+      } else if (!isCorrect && recogWord == "") {
+        feedback = 'หมดเวลา';
+        feedbackImg = 'assets/images/timeout.png';
       } else {
         feedback = 'ผิด';
         feedbackImg = 'assets/images/wrong.png';

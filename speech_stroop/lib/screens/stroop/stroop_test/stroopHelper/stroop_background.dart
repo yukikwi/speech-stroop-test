@@ -24,6 +24,12 @@ List<Color> setBackgroundColor(int answered, String feedback) {
           const Color(0xFFDA4F2C)
         ];
         break;
+      case 'หมดเวลา':
+        stroopBackgroundColor = [
+          const Color(0xFFFFE355),
+          const Color(0xFFFFE355)
+        ];
+        break;
     }
   } else {
     stroopBackgroundColor = [brightPrimaryColor, secondaryColor];
