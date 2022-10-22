@@ -6,14 +6,15 @@ const historySchema = new Schema(
   {
     experimentee: {
       type: ObjectId,
+      ref: 'Experimentee',
       required: true,
     },
     totalScore: {
       type: Number,
       required: true,
     },
-    sections: {
-      type: Array<{
+    sections: [
+      {
         section: {
           type: Number,
           required: true
@@ -35,8 +36,8 @@ const historySchema = new Schema(
           type: Number,
           required: true
         },
-        question: {
-          type: Array<{
+        question: [
+          {
             questionNumber: {
               type: Number,
               required: true
@@ -82,15 +83,14 @@ const historySchema = new Schema(
               type: Boolean,
               required: true
             },
-          }>
-        },
+          }
+        ],
         audioUrl: {
           type: String,
           required: true
         }
-      }>,
-      required: true,
-    },
+      }
+    ],
     feedbackType: {
       type: String,
       required: true,
