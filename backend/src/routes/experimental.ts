@@ -1,14 +1,30 @@
 import express from 'express'
-import { RequestWithExperimental } from 'src/types/express'
+import { setExperimentee, setHistory } from 'src/controller/save_experimental'
 
 const experimentalRouter = express.Router()
 experimentalRouter.use(express.json())
 experimentalRouter.use(express.urlencoded({ extended: true }))
 
-experimentalRouter.post('/submit', async (req: RequestWithExperimental, res) => {
-  // req.body :   data that client submit in x-www-form-urlencoded format
-  //              this using in form submittion
-  res.json(req.body)
+experimentalRouter.post('/submit_experimentee', async (req, res) => {
+  try {
+    const body = req.body
+    console.log(body)
+    const experimentee = await setExperimentee(body)
+    res.json(experimentee)
+  } catch (err) {
+    res.status(400).send(err)
+  }
 })
+
+experimentalRouter.post('/submit_result', async (req, res) => {
+  try {
+    const body = req.body
+    const history = await setHistory(body)
+    res.json(history)
+  } catch (err) {
+    res.status(400).send(err)
+  }
+})
+
 
 export default experimentalRouter
