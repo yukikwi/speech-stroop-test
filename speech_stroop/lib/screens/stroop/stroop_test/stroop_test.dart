@@ -8,6 +8,8 @@ import 'package:speech_stroop/screens/stroop/stroop_test/components/body.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/components/flutter_sound.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroopHelper/stroop_combination.dart';
 
+import '../../../model/test_module/experimental_history.dart';
+
 //badge
 int correctStack = 0;
 int highestCorrectStack = 0;
@@ -15,6 +17,7 @@ int highestCorrectStack = 0;
 int answered = -1;
 // latest test
 History latestTest;
+ExperimentalHistory latestExperimentalTestData;
 // section
 int sectionNumber = 0;
 List<Section> sections = [];
