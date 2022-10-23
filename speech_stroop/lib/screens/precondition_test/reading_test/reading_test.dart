@@ -38,6 +38,7 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
   int answeredReadingTest = 0;
   int score = 0;
   int failCount = 0;
+  List<int> numberList = [0, 1, 2, 3, 4, 5, 6];
 
   bool isInterval = false;
   bool isCorrect = false;
@@ -47,7 +48,7 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
   String recogWordReadingTest = '';
   Color stroopBackgroundColor;
   Color problemWordColor = Colors.black;
-  String problemWord = stroopColorsMap.keys.toList()[0];
+  String problemWord = '';
 
   void setBackgroundColor() {
     if (answeredReadingTest >= 0) {
@@ -70,6 +71,9 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     super.initState();
     setBackgroundColor();
     speech = stt.SpeechToText();
+    numberList.shuffle();
+    problemWord =
+        stroopColorsMap.keys.toList()[numberList[answeredReadingTest]];
   }
 
   @override
@@ -192,7 +196,8 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     feedback = '';
     feedbackImg = '';
     answeredReadingTest++;
-    problemWord = stroopColorsMap.keys.toList()[answeredReadingTest];
+    problemWord =
+        stroopColorsMap.keys.toList()[numberList[answeredReadingTest]];
     problemWordColor = Colors.black;
   }
 
@@ -230,9 +235,9 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
 
     String correctAnswer = answeredReadingTest == -1
         ? ''
-        : stroopColorsMap.keys.toList()[answeredReadingTest];
-    Tuple2 t =
-        checkAnswer(recogWordReadingTest, answeredReadingTest, correctAnswer);
+        : stroopColorsMap.keys.toList()[numberList[answeredReadingTest]];
+    Tuple2 t = checkAnswer(
+        recogWordReadingTest, numberList[answeredReadingTest], correctAnswer);
     isCorrect = t.item1;
     recogWordReadingTest = t.item2;
     setFeedback(isCorrect);

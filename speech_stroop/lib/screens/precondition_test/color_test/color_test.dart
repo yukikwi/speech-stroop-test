@@ -37,6 +37,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
   int answeredColorTest = 0;
   int score = 0;
   int failCount = 0;
+  List<int> numberList = [0, 1, 2, 3, 4, 5, 6];
 
   bool isInterval = false;
   bool isCorrect = false;
@@ -45,7 +46,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
   // String correctAnswerText = '';
   String recogWordColorTest = '';
   Color stroopBackgroundColor;
-  Color problemColor = stroopColorsMap.values.toList()[0];
+  Color problemColor;
 
   void setBackgroundColor() {
     if (answeredColorTest >= 0) {
@@ -69,6 +70,9 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     super.initState();
     setBackgroundColor();
     speech = stt.SpeechToText();
+    numberList.shuffle();
+    problemColor =
+        stroopColorsMap.values.toList()[numberList[answeredColorTest]];
   }
 
   @override
@@ -195,14 +199,16 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     feedback = '';
     feedbackImg = '';
     answeredColorTest++;
-    problemColor = stroopColorsMap.values.toList()[answeredColorTest];
+    problemColor =
+        stroopColorsMap.values.toList()[numberList[answeredColorTest]];
   }
 
   void setSameQuestionValue() {
     recogWordColorTest = '';
     feedback = '';
     feedbackImg = '';
-    problemColor = stroopColorsMap.values.toList()[answeredColorTest];
+    problemColor =
+        stroopColorsMap.values.toList()[numberList[answeredColorTest]];
   }
 
   void setFeedback(bool isCorrect) {
@@ -230,9 +236,9 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
 
     String correctAnswer = answeredColorTest == -1
         ? ''
-        : stroopColorsMap.keys.toList()[answeredColorTest];
-    Tuple2 t =
-        checkAnswer(recogWordColorTest, answeredColorTest, correctAnswer);
+        : stroopColorsMap.keys.toList()[numberList[answeredColorTest]];
+    Tuple2 t = checkAnswer(
+        recogWordColorTest, numberList[answeredColorTest], correctAnswer);
     isCorrect = t.item1;
     recogWordColorTest = t.item2;
     setFeedback(isCorrect);
