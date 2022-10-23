@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/enums.dart';
+import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/model/test_module/history.dart';
 import 'package:speech_stroop/model/test_module/section.dart';
 import 'package:speech_stroop/screens/home/home_screen.dart';
@@ -21,6 +22,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final formGlobalKey = GlobalKey<FormState>();
   History latestTestData;
+  ExperimentalHistory latestExperimentalTestData;
   List<History> history;
   int sumCongruentScore = 0;
   int sumIncongruentScore = 0;
