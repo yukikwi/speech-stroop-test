@@ -36,6 +36,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
   bool isListening = false;
   int answeredColorTest = 0;
   int score = 0;
+  int failCount = 0;
 
   bool isInterval = false;
   bool isCorrect = false;
@@ -197,6 +198,13 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     problemColor = stroopColorsMap.values.toList()[answeredColorTest];
   }
 
+  void setSameQuestionValue() {
+    recogWordColorTest = '';
+    feedback = '';
+    feedbackImg = '';
+    problemColor = stroopColorsMap.values.toList()[answeredColorTest];
+  }
+
   void setFeedback(bool isCorrect) {
     if (isCorrect) {
       setState(() {
@@ -233,6 +241,7 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     if (answeredColorTest < 6 && isCorrect == true) {
       Future.delayed(durationDelayInterval, () {
         setState(() {
+          failCount = 0;
           isInterval = false;
           setNextQuestionValue();
           setBackgroundColor();
@@ -240,8 +249,15 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
       });
     } else {
       Future.delayed(durationDelayInterval, () {
-        if (score < 7) {
+        if (score < 7 && failCount == 6) {
           Navigator.pushNamed(context, FailColorTestScreen.routeName);
+        } else if (score < 7 && failCount < 6) {
+          setState(() {
+            failCount++;
+            isInterval = false;
+            setSameQuestionValue();
+            setBackgroundColor();
+          });
         } else {
           setState(() {
             loading = true;

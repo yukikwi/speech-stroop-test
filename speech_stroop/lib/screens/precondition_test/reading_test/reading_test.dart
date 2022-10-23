@@ -37,6 +37,7 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
   bool isListening = false;
   int answeredReadingTest = 0;
   int score = 0;
+  int failCount = 0;
 
   bool isInterval = false;
   bool isCorrect = false;
@@ -195,6 +196,13 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     problemWordColor = Colors.black;
   }
 
+  void setSameQuestionValue() {
+    recogWordReadingTest = '';
+    feedback = '';
+    feedbackImg = '';
+    problemWordColor = Colors.black;
+  }
+
   void setFeedback(bool isCorrect) {
     if (answeredReadingTest >= 0) {
       if (isCorrect) {
@@ -233,6 +241,7 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     if (answeredReadingTest < 6 && isCorrect == true) {
       Future.delayed(durationDelayInterval, () {
         setState(() {
+          failCount = 0;
           isInterval = false;
           setNextQuestionValue();
           setBackgroundColor();
@@ -240,8 +249,15 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
       });
     } else {
       Future.delayed(durationDelayInterval, () async {
-        if (score < 7) {
+        if (score < 7 && failCount == 6) {
           Navigator.pushNamed(context, FailReadingTestScreen.routeName);
+        } else if (score < 7 && failCount < 6) {
+          setState(() {
+            failCount++;
+            isInterval = false;
+            setSameQuestionValue();
+            setBackgroundColor();
+          });
         } else {
           setState(() {
             loading = true;
