@@ -8,6 +8,7 @@ import '../../constants.dart';
 import '../../model/precondition.dart';
 import '../precondition_test/introduction.dart';
 import 'components/text_form_field.dart';
+import 'package:speech_stroop/model/experimental_token.dart';
 
 PreconditionScore colorVisibilityTest = PreconditionScore(0, DateTime.now());
 PreconditionScore readingAbilityTest = PreconditionScore(0, DateTime.now());
@@ -29,11 +30,16 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
   final formGlobalKey = GlobalKey<FormState>();
   TextEditingController tokenController;
   bool loading = false;
+  String experimenteeId;
 
   @override
   void initState() {
     tokenController = TextEditingController();
     super.initState();
+  }
+
+  void setExperimenteeNumber(String experimenteeNumber) async {
+    setExperimentee(experimenteeNumber);
   }
 
   @override
@@ -70,11 +76,12 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
                         child: TextFormFieldCustom(
                           tokenController,
                           'Experimental code',
-                          TextInputType.name,
+                          TextInputType.text,
                           (val) {
                             if (val.isEmpty) {
                               return 'โปรดระบุรหัสการทดลอง';
                             }
+                            experimenteeId = val;
                             return null;
                           },
                         ),
@@ -82,6 +89,7 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
                       FloatingButton(() => {
                             if (formGlobalKey.currentState.validate())
                               {
+                                setExperimenteeNumber(experimenteeId),
                                 Navigator.pushNamed(
                                     context, IntroductionScreen.routeName)
                               }

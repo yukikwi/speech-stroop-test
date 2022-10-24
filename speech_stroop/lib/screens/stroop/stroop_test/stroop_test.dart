@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_stroop/model/test_module/health_scores.dart';
 import 'package:speech_stroop/model/test_module/history.dart';
+import 'package:speech_stroop/model/experimental_token.dart';
 import 'package:speech_stroop/model/test_module/question.dart';
 import 'package:speech_stroop/model/test_module/section.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/components/body.dart';
@@ -15,6 +16,8 @@ int correctStack = 0;
 int highestCorrectStack = 0;
 // answer
 int answered = -1;
+//Current Experimentee
+ExperimentalToken currentExperimentee;
 // latest test
 History latestTest;
 ExperimentalHistory latestExperimentalTestData;
