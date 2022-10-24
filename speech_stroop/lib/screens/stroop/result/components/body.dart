@@ -21,8 +21,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final formGlobalKey = GlobalKey<FormState>();
-  History latestTestData;
-  ExperimentalHistory latestExperimentalTestData;
+  ExperimentalHistory latestTestData;
   List<History> history;
   int sumCongruentScore = 0;
   int sumIncongruentScore = 0;
@@ -37,12 +36,7 @@ class _BodyState extends State<Body> {
 
   @override
   void initState() {
-    latestTestData = latestTest;
-    if (latestTestData != null &&
-        latestTestData.badge != null &&
-        latestTestData.badge.isNotEmpty) {
-      showBadgeModal = true;
-    }
+    latestTestData = latestExperimentalTestData;
     calculateTypeScore();
 
     super.initState();
@@ -50,18 +44,6 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        Duration.zero,
-        () => {
-              if (latestTestData.badge != null && showBadgeModal == true)
-                {
-                  for (var b in latestTestData.badge)
-                    {
-                      showSimpleModalDialogBadge(context, b),
-                    },
-                  showBadgeModal = false,
-                }
-            });
     return SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Center(
@@ -78,7 +60,6 @@ class _BodyState extends State<Body> {
               // SectionLatesScoreChart(history, 7),
               // const SizedBox(height: 5),
               // SectionHighScore(),
-              SectionBadge(latestTestData.badge),
               const SizedBox(height: 5),
               PrimaryButton(
                   "เข้าสู่หน้าหลัก",

@@ -4,12 +4,7 @@ import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/components/loading_screen.dart';
 // import 'package:speech_stroop/model/audio.dart';
-import 'package:speech_stroop/model/badge.dart';
-import 'package:speech_stroop/model/test_module/health_scores.dart';
-import 'package:speech_stroop/model/test_module/history.dart';
-import 'package:speech_stroop/model/update_user.dart';
-import 'package:speech_stroop/model/user.dart';
-import 'package:speech_stroop/screens/stroop/healthRating/components/health_slider.dart';
+import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 // import 'package:speech_stroop/utils/directory.dart';
@@ -54,11 +49,10 @@ class _BodyState extends State<Body> {
     //   }
     // }
 
+    print(sections);
+    // TODO: get experimentee ObjectId from experimentee api and match feedback Type
     await setHistory(
-      totalScore,
-      sections,
-      healthScores,
-    );
+        '63539c56496127a5db0e7fea', totalScore, sections, 'afterQuestion');
 
     setState(() {
       loading = true;
