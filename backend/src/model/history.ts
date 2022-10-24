@@ -68,21 +68,21 @@ const historySchema = new Schema(
               required: true
             },
             startAt: {
-              type: String,
-              required: true
+              type: String
             },
             answerAt: {
-              type: String,
-              required: true
+              type: String
             },
             reactionTimeMs: {
-              type: Number,
-              required: true
+              type: Number
             },
             isCorrect: {
               type: Boolean,
               required: true
             },
+            isTimedOut: {
+              type: Boolean
+            }
           }
         ],
         audioUrl: {
@@ -121,7 +121,8 @@ export type HistoryDocument = mongoose.Document & {
       startAt: string,
       answerAt: string,
       reactionTimeMs: number,
-      isCorrect: boolean
+      isCorrect: boolean,
+      isTimedOut?: boolean
     }>,
     audioUrl: string
   }>,
