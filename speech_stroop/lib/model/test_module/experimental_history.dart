@@ -7,43 +7,54 @@ import './section.dart';
 
 class ExperimentalHistory {
   String _id;
-  String userId;
+  String experimenteeId;
   int totalScore;
   List<Section> sections;
   DateTime createdAt;
+  String feedbackType;
 
-  ExperimentalHistory(this.totalScore, this.sections, [this.createdAt]);
+  ExperimentalHistory(
+      this.experimenteeId, this.totalScore, this.sections, this.feedbackType,
+      [this.createdAt]);
 
   factory ExperimentalHistory.fromJson(dynamic json) {
     List<Section> sections = List<Section>.from(
         json['sections'].map((data) => Section.fromJson(data)));
 
     return ExperimentalHistory(
+      json['experimentee'],
       json['totalScore'] as int,
       sections,
+      json['feedbackType'],
       DateTime.parse(json['createdAt']).toLocal(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      "experimentee": experimenteeId,
       "totalScore": totalScore,
       "sections": sections,
+      "feedbackType": feedbackType
     };
   }
 }
 
 Future<int> setHistory(
-  String experimentee,
+  String experimenteeId,
   int totalScore,
   List<Section> sections,
+  String feedbackType,
 ) async {
-  latestExperimentalTestData = ExperimentalHistory(totalScore, sections);
-  var res = await http.post(Uri.parse("${APIPath.baseUrl}/history"),
+  latestExperimentalTestData =
+      ExperimentalHistory(experimenteeId, totalScore, sections, feedbackType);
+  print(jsonEncode(latestExperimentalTestData));
+  var res = await http.post(
+      Uri.parse("${APIPath.baseUrl}/experimental/submit_result"),
       headers: {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(latestExperimentalTestData));
-  print("post: /history " + res.statusCode.toString());
+  print("post: /experimental/submit_result " + res.statusCode.toString());
   return res.statusCode;
 }
