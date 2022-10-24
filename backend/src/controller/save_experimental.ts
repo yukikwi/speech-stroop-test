@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongoose'
 import { Experimentee, ExperimenteeDocument } from 'src/model/experimentee'
+import { randomUniformClass } from 'src/utils/uniform_random'
 import { History, HistoryDocument } from '../model/history'
 
 
@@ -38,7 +39,7 @@ export interface HistoryDTO {
 
 export interface ExperimenteeDTO {
   runingNumber: string,
-  feedbackOrder: {
+  feedbackOrder?: {
     afterQuestion: number,
     afterSection: number,
     afterAllSection: number
@@ -48,8 +49,22 @@ export interface ExperimenteeDTO {
 export async function setExperimentee(
   experimenteeDTO: ExperimenteeDTO
 ): Promise<ExperimenteeDocument> {
+  // counter balanced algorithm
+  const feedbackOrderPattern = ["123", "132", "213", "231", "312", "321"]
+  const experimenteesFeedbackOrder = await Experimentee.find().select({"feedbackOrder": 1})
+  // convert feedbackOrder object to class pattern
+  const experimenteesFeedbackOrderOldResultClass = experimenteesFeedbackOrder.map(row => `${row.feedbackOrder.afterQuestion}${row.feedbackOrder.afterSection}${row.feedbackOrder.afterAllSection}`)
+  const newExperimenteeFeedbackOrder = randomUniformClass(experimenteesFeedbackOrderOldResultClass, feedbackOrderPattern).split("").map(element => parseInt(element))
+
+  experimenteeDTO = {
+    ...experimenteeDTO,
+    feedbackOrder: {
+      afterQuestion: newExperimenteeFeedbackOrder[0],
+      afterSection:  newExperimenteeFeedbackOrder[1],
+      afterAllSection:  newExperimenteeFeedbackOrder[2]
+    }
+  }
   const newExperimentee = new Experimentee(experimenteeDTO)
-  console.log(newExperimentee)
   await newExperimentee.save()
   return newExperimentee
 }

@@ -49,18 +49,3 @@ export function randomUniformClass(oldResult: Array<String>, resultClass: Array<
     }
   }
 }
-
-// test
-const testMap:any = {}
-const oldResult = ["123", "231", "321", "123"]
-for(let i = 0; i < 10000; i++){
-  const randomClass = randomUniformClass(oldResult, ["123", "132", "213", "231", "312", "321"])
-  if(testMap[randomClass] != undefined){
-    testMap[randomClass] += 1
-  }
-  else{
-    testMap[randomClass] = 1
-  }
-  oldResult.push(randomClass)
-}
-console.log(testMap)
