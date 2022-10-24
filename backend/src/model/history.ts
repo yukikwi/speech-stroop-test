@@ -33,10 +33,9 @@ const historySchema = new Schema(
           required: true
         },
         avgReactionTimeMs: {
-          type: Number,
-          required: true
+          type: Number
         },
-        question: [
+        questions: [
           {
             questionNumber: {
               type: Number,
@@ -64,8 +63,7 @@ const historySchema = new Schema(
               required: true
             },
             userAnswer: {
-              type: String,
-              required: true
+              type: String
             },
             startAt: {
               type: String
