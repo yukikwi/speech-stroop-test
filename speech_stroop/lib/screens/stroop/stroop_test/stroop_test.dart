@@ -22,7 +22,8 @@ ExperimentalToken currentExperimentee;
 History latestTest;
 ExperimentalHistory latestExperimentalTestData;
 //feedback type
-String feedbackType;
+int feedbackNumber = 0;
+List<String> feedbackTypes = ["", "", ""];
 // section
 int sectionNumber = 0;
 List<Section> sections = [];
