@@ -21,6 +21,8 @@ ExperimentalToken currentExperimentee;
 // latest test
 History latestTest;
 ExperimentalHistory latestExperimentalTestData;
+//feedback type
+String feedbackType;
 // section
 int sectionNumber = 0;
 List<Section> sections = [];

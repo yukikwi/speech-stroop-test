@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/button/mic_button.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/test_module/question.dart';
+import 'package:speech_stroop/screens/stroop/feedback_section/feedback_section_screen.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/components/flutter_sound.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroopHelper/stroop_background.dart';
@@ -322,7 +323,7 @@ class _BodyState extends State<Body> {
 
         scores = {"congruent": 0, "incongruent": 0};
         Future.delayed(durationDelayInterval, () async {
-          Navigator.pushNamed(context, BreakScreen.routeName);
+          Navigator.pushNamed(context, FeedbackSection.routeName);
         });
       }
     });
