@@ -25,16 +25,6 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
 
   @override
   void initState() {
-    for (int i = 0; i < stroopQuestionsAmount; i++) {
-      print("questionNumber: ${widget.questions[i].questionNumber}");
-      print("problem['color']: ${widget.questions[i].problem["color"]}");
-      print("problem['word']: ${widget.questions[i].problem["word"]}");
-      print("expectedAnswer: ${widget.questions[i].expectedAnswer}");
-      print("userAnswer: ${widget.questions[i].userAnswer}");
-      print("isCorrect: ${widget.questions[i].isCorrect}");
-      print("reactionTimeMs: ${widget.questions[i].reactionTimeMs}");
-      print("isCorrect: ${widget.questions[i].isCorrect}");
-    }
     expanded = false;
     canExpaned = false;
 

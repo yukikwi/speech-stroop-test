@@ -5,13 +5,10 @@ import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/model/test_module/history.dart';
 import 'package:speech_stroop/model/test_module/section.dart';
 import 'package:speech_stroop/screens/home/home_screen.dart';
-import 'package:speech_stroop/screens/stroop/result/components/section_badge.dart';
 import 'package:speech_stroop/screens/stroop/result/components/section_score.dart';
 import 'package:speech_stroop/screens/stroop/result/components/total_score.dart';
 import 'package:speech_stroop/screens/stroop/result/components/type_score.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
-
-import 'badge_modal.dart';
 
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
