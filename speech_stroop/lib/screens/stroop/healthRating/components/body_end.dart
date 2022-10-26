@@ -50,18 +50,16 @@ class _BodyState extends State<Body> {
     // }
 
     print(sections);
-    // TODO: get experimentee ObjectId from experimentee api and match feedback Type
-    await setHistory(
-        '63539c56496127a5db0e7fea', totalScore, sections, 'afterQuestion');
+    await setHistory(currentExperimentee.id, totalScore, sections,
+        feedbackTypes[feedbackNumber]);
 
     setState(() {
       loading = true;
     });
-
-    Navigator.pushNamed(context, ResultScreen.routeName);
-
     sections = [];
     totalScore = 0;
+
+    Navigator.pushNamed(context, ResultScreen.routeName);
   }
 
   @override

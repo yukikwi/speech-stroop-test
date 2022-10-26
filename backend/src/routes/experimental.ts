@@ -7,6 +7,10 @@ experimentalRouter.use(express.urlencoded({ extended: true }))
 
 experimentalRouter.post('/submit_experimentee', async (req, res) => {
   try {
+    // drop _id from request body to avoid null
+    if(req.body._id === null) {
+      delete req.body._id;
+    }
     const body = req.body
     console.log(body)
     const experimentee = await setExperimentee(body)

@@ -205,15 +205,20 @@ class _BodyState extends State<Body> {
 
   void setFeedback(bool isCorrect) {
     setState(() {
-      if (isCorrect) {
-        feedback = 'ถูกต้อง';
-        feedbackImg = 'assets/images/correct.png';
-      } else if (!isCorrect && recogWord == "") {
-        feedback = 'หมดเวลา';
-        feedbackImg = 'assets/images/timeout.png';
+      if (feedbackTypes[feedbackNumber] == "afterQuestion") {
+        if (isCorrect) {
+          feedback = 'ถูกต้อง';
+          feedbackImg = 'assets/images/correct.png';
+        } else if (!isCorrect && recogWord == "") {
+          feedback = 'หมดเวลา';
+          feedbackImg = 'assets/images/timeout.png';
+        } else {
+          feedback = 'ผิด';
+          feedbackImg = 'assets/images/wrong.png';
+        }
       } else {
-        feedback = 'ผิด';
-        feedbackImg = 'assets/images/wrong.png';
+        feedback = '';
+        feedbackImg = 'ไปยังข้อถัดไป';
       }
       testText = recogWord;
       stroopBackgroundColor = setBackgroundColor(answered, feedback);
@@ -292,6 +297,8 @@ class _BodyState extends State<Body> {
         }
 
         loggerNoStack.d({
+          'sectionNumber': sectionNumber,
+          'sections': sections,
           'answered': answered,
           'isCorrect': isCorrect,
           'recogWord': recogWord,
@@ -323,7 +330,11 @@ class _BodyState extends State<Body> {
 
         scores = {"congruent": 0, "incongruent": 0};
         Future.delayed(durationDelayInterval, () async {
-          Navigator.pushNamed(context, FeedbackSection.routeName);
+          if (feedbackTypes[feedbackNumber] != "afterAllSection") {
+            Navigator.pushNamed(context, FeedbackSection.routeName);
+          } else {
+            Navigator.pushNamed(context, BreakScreen.routeName);
+          }
         });
       }
     });

@@ -7,20 +7,26 @@ import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import './test_module/section.dart';
 
 class ExperimentalToken {
+  String id;
   String runingNumber;
   FeedbackOrder feedbackOrder;
 
   ExperimentalToken(this.runingNumber);
 
-  ExperimentalToken.withFeedbackOrder(this.runingNumber, this.feedbackOrder);
+  ExperimentalToken.withFeedbackOrder(
+      this.id, this.runingNumber, this.feedbackOrder);
 
   factory ExperimentalToken.fromJson(Map<String, dynamic> json) {
-    return ExperimentalToken.withFeedbackOrder(
+    return ExperimentalToken.withFeedbackOrder(json['_id'],
         json['runingNumber'], FeedbackOrder.fromJson(json['feedbackOrder']));
   }
 
   Map<String, dynamic> toJson() {
-    return {"runingNumber": runingNumber, "feedbackOrder": feedbackOrder};
+    return {
+      "_id": id,
+      "runingNumber": runingNumber,
+      "feedbackOrder": feedbackOrder
+    };
   }
 }
 
@@ -45,6 +51,7 @@ Future<int> setExperimentee(
   feedbackTypes[order[0] - 1] = "afterQuestion";
   feedbackTypes[order[1] - 1] = "afterSection";
   feedbackTypes[order[2] - 1] = "afterAllSection";
+  print("currentExperimentee " + currentExperimentee.id);
   print("feedbackTypes " + feedbackTypes.toString());
   print("post: /experimental/submit_result " + res.statusCode.toString());
   return res.statusCode;

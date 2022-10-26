@@ -50,11 +50,21 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
             style:
                 Theme.of(context).textTheme.labelSmall.apply(color: formText),
           ),
-          Text(
-            "${(widget.reactionTime / 1000).toStringAsFixed(2)} วินาที",
-            style:
-                Theme.of(context).textTheme.labelSmall.apply(color: formText),
-          ),
+          widget.reactionTime != null
+              ? Text(
+                  "${(widget.reactionTime / 1000).toStringAsFixed(2)} วินาที",
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelSmall
+                      .apply(color: formText),
+                )
+              : Text(
+                  "ไม่สามารถคำนวณได้",
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelSmall
+                      .apply(color: formText),
+                ),
         ]),
         const SizedBox(height: 25),
         Container(
@@ -163,7 +173,7 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
                             child: widget.questions[i].userAnswer == null ||
                                     widget.questions[i].userAnswer.isEmpty
                                 ? Text(
-                                    "ไม่ได้ตอบ",
+                                    "-",
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
