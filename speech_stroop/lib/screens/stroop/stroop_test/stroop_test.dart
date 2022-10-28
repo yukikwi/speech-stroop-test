@@ -42,7 +42,7 @@ double confidence = 0;
 Stopwatch stopwatchRT = Stopwatch();
 Stopwatch stopwatchAudio = Stopwatch();
 // audio
-// RecordAudio recordAudio;
+RecordAudio recordAudio;
 String recordAudioDateTime = "";
 
 class StroopTestScreen extends StatelessWidget {

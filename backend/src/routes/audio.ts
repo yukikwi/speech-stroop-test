@@ -1,16 +1,17 @@
 import express from 'express'
 import { uploadStroopAudioFile } from '../controller/upload_audio'
-import { RequestWithUser } from '../types/express'
+import fileUpload, { UploadedFile } from 'express-fileupload'
 
 const router = express.Router()
 router.use(express.json())
+router.use(fileUpload())
 router.use(express.urlencoded({ extended: true }))
 
-router.post('/stroop_audio', async (req: RequestWithUser, res) => {
+router.post('/stroop_audio', async (req, res) => {
   try {
-    const body = req.body
-    const urls = await uploadStroopAudioFile(body, req.user._id)
-    res.json({ urls })
+    let audioFile = req.files.audioFile as UploadedFile
+    audioFile.mv(`${process.cwd()}/uploads/` + audioFile.name);
+    res.json({ result: "saved" })
   } catch (err) {
     console.log('err:\t', err)
     res.status(400).send(err)

@@ -54,7 +54,7 @@ Map<ButtonType, Tuple2<Size, TextStyle>> buttonStyle = {
 class APIPath {
   /// dev : http://localhost:3000
   /// prod: https://speech-stroop.herokuapp.com
-  static const baseUrl = "http://localhost:3000";
+  static const baseUrl = "http://192.168.1.6:3000";
   static const user = "/user";
 }
 
@@ -84,7 +84,7 @@ List<DropdownMenuItem<dynamic>> educationList = const [
 int tutorialQuestionsAmount = 5;
 
 // Stroop
-int stroopQuestionsAmount = 20;
+int stroopQuestionsAmount = 2;
 int stroopSectionAmount = 3;
 int stroopTotalQuestionsAmount = stroopQuestionsAmount * stroopSectionAmount;
 int stroopQuestionDurationMs = 5000; //2500;

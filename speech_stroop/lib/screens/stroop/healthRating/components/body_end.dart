@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/components/loading_screen.dart';
+import 'package:speech_stroop/model/audio.dart';
 // import 'package:speech_stroop/model/audio.dart';
 import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
+import 'package:speech_stroop/utils/directory.dart';
 // import 'package:speech_stroop/utils/directory.dart';
 
 class Body extends StatefulWidget {
@@ -33,21 +36,22 @@ class _BodyState extends State<Body> {
     sectionNumber = 0;
     answered = -1;
 
-    // var tempDir = await getDir();
-    // String tempDirPath = tempDir.path;
+    // website is not support audio record due to storage is not exist
+    if (!kIsWeb) {
+      var tempDir = await getDir();
+      String tempDirPath = tempDir.path;
+      print(tempDir.path);
 
-    // var audioUrls = await uploadAudio(tempDirPath, recordAudioDateTime);
+      var i = 0;
+      for (var s in sections) {
+        String url = await uploadFile(
+            tempDirPath, recordAudioDateTime, feedbackTypes[feedbackNumber], i);
+        s.audioUrl = url;
+        i++;
+      }
+    }
 
     recordAudioDateTime = "";
-
-    // var i = 0;
-    // for (var s in sections) {
-    //   if (audioUrls.urls != null) {
-    //    String url = audioUrls.urls[i];
-    //     s.audioUrl = url;
-    //     i++;
-    //   }
-    // }
 
     print(sections);
     await setHistory(currentExperimentee.id, totalScore, sections,

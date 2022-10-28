@@ -3,3 +3,4 @@ dist
 volumes
 .env
 google-credentials.json
+uploads/*.wav

@@ -7,7 +7,8 @@ import 'package:speech_stroop/utils/directory.dart';
 class RecordAudio {
   int section;
   final String datetime;
-  RecordAudio(this.section, this.datetime);
+  String feedback;
+  RecordAudio(this.section, this.datetime, this.feedback);
   // compress file with tSampleRate
   int tSampleRate = 6000;
   FlutterSoundRecorder mRecorder = FlutterSoundRecorder();
@@ -31,7 +32,7 @@ class RecordAudio {
   }
 
   String getFileName() {
-    return '${datetime}_section-$section';
+    return '${feedback}_${datetime}_section-$section';
   }
 
   Future<IOSink> createFile() async {
