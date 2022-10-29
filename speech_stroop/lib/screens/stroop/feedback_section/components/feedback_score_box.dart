@@ -48,21 +48,21 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
           Text(
             "เวลาเฉลี่ยที่ใช้",
             style:
-                Theme.of(context).textTheme.labelSmall.apply(color: formText),
+                Theme.of(context).textTheme.titleSmall.apply(color: formText),
           ),
           widget.reactionTime != null
               ? Text(
                   "${(widget.reactionTime / 1000).toStringAsFixed(2)} วินาที",
                   style: Theme.of(context)
                       .textTheme
-                      .labelSmall
+                      .titleSmall
                       .apply(color: formText),
                 )
               : Text(
                   "ไม่สามารถคำนวณได้",
                   style: Theme.of(context)
                       .textTheme
-                      .labelSmall
+                      .titleSmall
                       .apply(color: formText),
                 ),
         ]),
@@ -87,7 +87,7 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
                         width: 100.0,
                         height: 40.0,
                         child: Text(
-                          "โจทย์",
+                          "ข้อที่",
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -100,7 +100,7 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
                         width: 100.0,
                         height: 40.0,
                         child: Text(
-                          "คำตอบของคุณ",
+                          "โจทย์",
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -156,6 +156,19 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
                             width: 100.0,
                             height: 40.0,
                             child: Text(
+                              widget.questions[i].questionNumber.toString(),
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  .apply(color: Colors.black),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            width: 100.0,
+                            height: 40.0,
+                            child: Text(
                               widget.questions[i].problem["word"],
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -165,29 +178,6 @@ class _FeedbackScoreBoxState extends State<FeedbackScoreBox> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: 100.0,
-                            height: 40.0,
-                            child: widget.questions[i].userAnswer == null ||
-                                    widget.questions[i].userAnswer.isEmpty
-                                ? Text(
-                                    "-",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        .apply(color: Colors.black),
-                                  )
-                                : Text(
-                                    widget.questions[i].userAnswer,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        .apply(color: Colors.black),
-                                  ),
                           ),
                           Container(
                             alignment: Alignment.center,

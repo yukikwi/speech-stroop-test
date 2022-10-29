@@ -46,20 +46,24 @@ class _BodyState extends State<Body> {
       body: SafeArea(
         child: Align(
           alignment: Alignment.center,
-          child: Column(mainAxisSize: MainAxisSize.max, children: [
-            const SizedBox(
-              height: 60,
-            ),
-            Text("ถ้าพร้อมแล้ว...",
-                style: textTheme().headlineMedium.apply(
-                      color: const Color(0xFF3F3F3F),
-                    )),
-            const SizedBox(
-              height: 20,
-            ),
-            PrimaryButton(
-                'เริ่มแบบทดสอบที่ ${sectionNumber + 1}', () => startQuiz())
-          ]),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const SizedBox(
+                  height: 60,
+                ),
+                Text("ถ้าพร้อมแล้ว...",
+                    style: textTheme().headlineMedium.apply(
+                          color: const Color(0xFF3F3F3F),
+                        )),
+                const SizedBox(
+                  height: 20,
+                ),
+                PrimaryButton(
+                    'เริ่มแบบทดสอบที่ ${feedbackNumber + 1} ส่วนที่ ${sectionNumber + 1}',
+                    () => startQuiz())
+              ]),
         ),
       ),
     );

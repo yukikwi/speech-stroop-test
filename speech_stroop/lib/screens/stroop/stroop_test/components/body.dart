@@ -135,7 +135,9 @@ class _BodyState extends State<Body> {
                                   initQuestions(testTemplate);
                                   stopwatchAudio.reset();
                                   stopwatchAudio.start();
-                                  recordAudio.getRecorderFn()();
+                                  if (!kIsWeb) {
+                                    recordAudio.getRecorderFn()();
+                                  }
                                   navigatePage();
                                 },
                               )),
@@ -146,14 +148,23 @@ class _BodyState extends State<Body> {
                           width: 100,
                           height: 100,
                         )
-                      : Text(feedbackImg),
+                      : Text(feedbackImg,
+                          style: textTheme()
+                              .headlineSmall
+                              .apply(color: primaryColor)),
                   const SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    feedback,
-                    style: textTheme().headlineSmall.apply(color: Colors.white),
-                  ),
+                  feedback != ''
+                      ? Text(
+                          feedback,
+                          style: textTheme()
+                              .headlineSmall
+                              .apply(color: Colors.white),
+                        )
+                      : const SizedBox(
+                          height: 5,
+                        ),
                   // Text(
                   //   'test: $testText, err: $textErr',
                   //   style: textTheme().headlineSmall.apply(color: Colors.white),
@@ -222,8 +233,8 @@ class _BodyState extends State<Body> {
           feedbackImg = 'assets/images/wrong.png';
         }
       } else {
-        feedback = '';
-        feedbackImg = 'ไปยังข้อถัดไป';
+        feedback = 'ได้รับคำตอบแล้ว';
+        feedbackImg = 'assets/images/check_submit.png';
       }
       testText = recogWord;
       stroopBackgroundColor = setBackgroundColor(answered, feedback);
@@ -327,7 +338,9 @@ class _BodyState extends State<Body> {
       // end of each sections
       else if (answered == stroopQuestionsAmount - 1) {
         stopwatchAudio.stop();
-        recordAudio.getRecorderFn()();
+        if (!kIsWeb) {
+          recordAudio.getRecorderFn()();
+        }
 
         highestCorrectStack = correctStack > highestCorrectStack
             ? correctStack

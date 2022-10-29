@@ -42,10 +42,8 @@ class _BodyState extends State<Body> {
               const SizedBox(height: 5),
               const FeedbackScore(),
               const SizedBox(height: 5),
-              PrimaryButton(
-                  "ไปยังส่วนถัดไป",
-                  () => {Navigator.pushNamed(context, BreakScreen.routeName)},
-                  ButtonType.medium)
+              PrimaryButton("ไปยังส่วนถัดไป",
+                  () => {Navigator.pushNamed(context, BreakScreen.routeName)})
             ],
           ),
         )));

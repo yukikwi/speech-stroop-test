@@ -9,6 +9,7 @@ import 'package:speech_stroop/model/audio.dart';
 import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
+import 'package:speech_stroop/theme.dart';
 import 'package:speech_stroop/utils/directory.dart';
 // import 'package:speech_stroop/utils/directory.dart';
 
@@ -79,12 +80,22 @@ class _BodyState extends State<Body> {
             body: SafeArea(
               child: Align(
                 alignment: Alignment.center,
-                child: Column(mainAxisSize: MainAxisSize.max, children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
-                ]),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Text("สิ้นสุดการทดสอบที่ ${feedbackNumber + 1}",
+                          style: textTheme().headlineMedium.apply(
+                                color: const Color(0xFF3F3F3F),
+                              )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
+                    ]),
               ),
             ),
           );
