@@ -1,4 +1,5 @@
-import 'dart:ffi';
+import "package:speech_stroop/utils/no_import.dart"
+    if (dart.library.ffi) "dart:ffi";
 import 'dart:io';
 import 'package:http_parser/http_parser.dart';
 import 'package:http/http.dart' as http;
