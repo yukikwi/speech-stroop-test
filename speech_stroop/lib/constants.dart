@@ -84,7 +84,7 @@ List<DropdownMenuItem<dynamic>> educationList = const [
 int tutorialQuestionsAmount = 5;
 
 // Stroop
-int stroopQuestionsAmount = 2;
+int stroopQuestionsAmount = 60;
 int stroopSectionAmount = 3;
 int stroopTotalQuestionsAmount = stroopQuestionsAmount * stroopSectionAmount;
 int stroopQuestionDurationMs = 5000; //2500;
