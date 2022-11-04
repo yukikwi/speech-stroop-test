@@ -127,6 +127,7 @@ flutter:
     - assets/images/correct.png
     - assets/images/wrong.png
     - assets/images/timeout.png
+    - assets/images/check_submit.png
     - assets/images/down.png
     - assets/images/up.png
     - assets/images/empty_data.png

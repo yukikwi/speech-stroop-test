@@ -5,13 +5,11 @@ import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/model/test_module/history.dart';
 import 'package:speech_stroop/model/test_module/section.dart';
 import 'package:speech_stroop/screens/home/home_screen.dart';
-import 'package:speech_stroop/screens/stroop/result/components/section_badge.dart';
+import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
 import 'package:speech_stroop/screens/stroop/result/components/section_score.dart';
 import 'package:speech_stroop/screens/stroop/result/components/total_score.dart';
 import 'package:speech_stroop/screens/stroop/result/components/type_score.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
-
-import 'badge_modal.dart';
 
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
@@ -61,16 +59,28 @@ class _BodyState extends State<Body> {
               // const SizedBox(height: 5),
               // SectionHighScore(),
               const SizedBox(height: 5),
-              PrimaryButton(
-                  "เข้าสู่หน้าหลัก",
-                  () => {
-                        //clear lates test
-                        latestTestData = null,
-                        latestTest = null,
+              feedbackNumber == 2
+                  ? PrimaryButton(
+                      "สิ้นสุดการทดสอบ",
+                      () => {
+                            //clear lates test
+                            latestTestData = null,
+                            latestTest = null,
 
-                        Navigator.pushNamed(context, HomeScreen.routeName)
-                      },
-                  ButtonType.medium)
+                            Navigator.pushNamed(context, HomeScreen.routeName)
+                          },
+                      ButtonType.medium)
+                  : PrimaryButton(
+                      "ไปยังการทดสอบที่ ${feedbackNumber + 2}",
+                      () => {
+                            //clear lates test
+                            feedbackNumber++,
+                            latestTestData = null,
+                            latestTest = null,
+
+                            Navigator.pushNamed(context, BreakScreen.routeName)
+                          },
+                      ButtonType.medium)
             ],
           ),
         )));

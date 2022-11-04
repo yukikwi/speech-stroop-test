@@ -25,16 +25,6 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
 
   @override
   void initState() {
-    for (int i = 0; i < stroopQuestionsAmount; i++) {
-      print("questionNumber: ${widget.questions[i].questionNumber}");
-      print("problem['color']: ${widget.questions[i].problem["color"]}");
-      print("problem['word']: ${widget.questions[i].problem["word"]}");
-      print("expectedAnswer: ${widget.questions[i].expectedAnswer}");
-      print("userAnswer: ${widget.questions[i].userAnswer}");
-      print("isCorrect: ${widget.questions[i].isCorrect}");
-      print("reactionTimeMs: ${widget.questions[i].reactionTimeMs}");
-      print("isCorrect: ${widget.questions[i].isCorrect}");
-    }
     expanded = false;
     canExpaned = false;
 
@@ -187,7 +177,7 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                   width: 100.0,
                   height: 40.0,
                   child: Text(
-                    "โจทย์",
+                    "ข้อที่",
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -200,7 +190,7 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                   width: 100.0,
                   height: 40.0,
                   child: Text(
-                    "คำตอบของคุณ",
+                    "โจทย์",
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -256,6 +246,19 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                           width: 100.0,
                           height: 40.0,
                           child: Text(
+                            widget.questions[i].questionNumber.toString(),
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                .apply(color: Colors.black),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: 100.0,
+                          height: 40.0,
+                          child: Text(
                             widget.questions[i].problem["word"],
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -265,29 +268,6 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: 100.0,
-                          height: 40.0,
-                          child: widget.questions[i].userAnswer == null ||
-                                  widget.questions[i].userAnswer.isEmpty
-                              ? Text(
-                                  "ไม่ได้ตอบ",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      .apply(color: Colors.black),
-                                )
-                              : Text(
-                                  widget.questions[i].userAnswer,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      .apply(color: Colors.black),
-                                ),
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -308,7 +288,7 @@ class _SectionScoreExpandState extends State<SectionScoreExpand> {
                           height: 40.0,
                           child: widget.questions[i].reactionTimeMs == null
                               ? Text(
-                                  "ไม่ได้ตอบ",
+                                  "-",
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme

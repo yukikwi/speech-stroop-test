@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/button/mic_button.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/test_module/question.dart';
+import 'package:speech_stroop/screens/stroop/feedback_section/feedback_section_screen.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/components/flutter_sound.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroopHelper/stroop_background.dart';
@@ -47,17 +49,21 @@ class _BodyState extends State<Body> {
     stroopBackgroundColor = setBackgroundColor(answered, feedback);
     speech = stt.SpeechToText();
 
-    // if (recordAudioDateTime == "") {
-    //   recordAudioDateTime = getAudioFileDateFormat(DateTime.now());
-    // }
-    // recordAudio = RecordAudio(sectionNumber, recordAudioDateTime);
+    // record on non-website platform only
+    if (!kIsWeb) {
+      if (recordAudioDateTime == "") {
+        recordAudioDateTime = getAudioFileDateFormat(DateTime.now());
+      }
+      recordAudio = RecordAudio(
+          sectionNumber, recordAudioDateTime, feedbackTypes[feedbackNumber]);
 
-    // loggerNoStack.d("init state", {
-    // "sectionNumber": recordAudio.section,
-    // "recordAudioDateTime": recordAudio.datetime,
-    // });
+      loggerNoStack.d("init state", {
+        "sectionNumber": recordAudio.section,
+        "recordAudioDateTime": recordAudio.datetime,
+      });
 
-    // recordAudio.openRecorder();
+      recordAudio.openRecorder();
+    }
   }
 
   @override
@@ -129,7 +135,9 @@ class _BodyState extends State<Body> {
                                   initQuestions(testTemplate);
                                   stopwatchAudio.reset();
                                   stopwatchAudio.start();
-                                  // recordAudio.getRecorderFn()();
+                                  if (!kIsWeb) {
+                                    recordAudio.getRecorderFn()();
+                                  }
                                   navigatePage();
                                 },
                               )),
@@ -140,14 +148,23 @@ class _BodyState extends State<Body> {
                           width: 100,
                           height: 100,
                         )
-                      : Text(feedbackImg),
+                      : Text(feedbackImg,
+                          style: textTheme()
+                              .headlineSmall
+                              .apply(color: primaryColor)),
                   const SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    feedback,
-                    style: textTheme().headlineSmall.apply(color: Colors.white),
-                  ),
+                  feedback != ''
+                      ? Text(
+                          feedback,
+                          style: textTheme()
+                              .headlineSmall
+                              .apply(color: Colors.white),
+                        )
+                      : const SizedBox(
+                          height: 5,
+                        ),
                   // Text(
                   //   'test: $testText, err: $textErr',
                   //   style: textTheme().headlineSmall.apply(color: Colors.white),
@@ -204,15 +221,20 @@ class _BodyState extends State<Body> {
 
   void setFeedback(bool isCorrect) {
     setState(() {
-      if (isCorrect) {
-        feedback = 'ถูกต้อง';
-        feedbackImg = 'assets/images/correct.png';
-      } else if (!isCorrect && recogWord == "") {
-        feedback = 'หมดเวลา';
-        feedbackImg = 'assets/images/timeout.png';
+      if (feedbackTypes[feedbackNumber] == "afterQuestion") {
+        if (isCorrect) {
+          feedback = 'ถูกต้อง';
+          feedbackImg = 'assets/images/correct.png';
+        } else if (!isCorrect && recogWord == "") {
+          feedback = 'หมดเวลา';
+          feedbackImg = 'assets/images/timeout.png';
+        } else {
+          feedback = 'ผิด';
+          feedbackImg = 'assets/images/wrong.png';
+        }
       } else {
-        feedback = 'ผิด';
-        feedbackImg = 'assets/images/wrong.png';
+        feedback = 'ได้รับคำตอบแล้ว';
+        feedbackImg = 'assets/images/check_submit.png';
       }
       testText = recogWord;
       stroopBackgroundColor = setBackgroundColor(answered, feedback);
@@ -291,6 +313,8 @@ class _BodyState extends State<Body> {
         }
 
         loggerNoStack.d({
+          'sectionNumber': sectionNumber,
+          'sections': sections,
           'answered': answered,
           'isCorrect': isCorrect,
           'recogWord': recogWord,
@@ -314,7 +338,9 @@ class _BodyState extends State<Body> {
       // end of each sections
       else if (answered == stroopQuestionsAmount - 1) {
         stopwatchAudio.stop();
-        // recordAudio.getRecorderFn()();
+        if (!kIsWeb) {
+          recordAudio.getRecorderFn()();
+        }
 
         highestCorrectStack = correctStack > highestCorrectStack
             ? correctStack
@@ -322,7 +348,11 @@ class _BodyState extends State<Body> {
 
         scores = {"congruent": 0, "incongruent": 0};
         Future.delayed(durationDelayInterval, () async {
-          Navigator.pushNamed(context, BreakScreen.routeName);
+          if (feedbackTypes[feedbackNumber] != "afterAllSection") {
+            Navigator.pushNamed(context, FeedbackSection.routeName);
+          } else {
+            Navigator.pushNamed(context, BreakScreen.routeName);
+          }
         });
       }
     });

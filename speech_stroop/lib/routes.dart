@@ -18,6 +18,7 @@ import 'package:speech_stroop/screens/precondition_test/introduction.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/fail_reading_test.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/pass_reading_test.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
+import 'package:speech_stroop/screens/stroop/feedback_section/feedback_section_screen.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
@@ -63,6 +64,7 @@ final Map<String, WidgetBuilder> routes = {
   // Stroop Test
   StroopTestScreen.routeName: (context) => const StroopTestScreen(),
   BreakScreen.routeName: (context) => BreakScreen(),
+  FeedbackSection.routeName: (context) => FeedbackSection(),
   ResultScreen.routeName: (context) => const ResultScreen(),
 
   // Buttom NevBar

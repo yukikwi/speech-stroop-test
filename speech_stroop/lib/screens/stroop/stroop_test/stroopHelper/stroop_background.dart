@@ -30,6 +30,9 @@ List<Color> setBackgroundColor(int answered, String feedback) {
           const Color(0xFFFFDB27)
         ];
         break;
+      case 'ได้รับคำตอบแล้ว':
+        stroopBackgroundColor = [secondaryColor, secondaryColor];
+        break;
     }
   } else {
     stroopBackgroundColor = [brightPrimaryColor, secondaryColor];

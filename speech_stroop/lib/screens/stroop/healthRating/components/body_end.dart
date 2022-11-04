@@ -8,6 +8,7 @@ import 'package:speech_stroop/model/audio.dart';
 import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
+import 'package:speech_stroop/theme.dart';
 import 'package:speech_stroop/utils/directory.dart';
 
 class Body extends StatefulWidget {
@@ -34,37 +35,34 @@ class _BodyState extends State<Body> {
     sectionNumber = 0;
     answered = -1;
 
+    // website is not support audio record due to storage is not exist
     if (!kIsWeb) {
       var tempDir = await getDir();
       String tempDirPath = tempDir.path;
-
-      var audioUrls = await uploadAudio(tempDirPath, recordAudioDateTime);
-
-      recordAudioDateTime = "";
+      print(tempDir.path);
 
       var i = 0;
       for (var s in sections) {
-        if (audioUrls.urls != null) {
-          String url = audioUrls.urls[i];
-          s.audioUrl = url;
-          i++;
-        }
+        String url = await uploadFile(
+            tempDirPath, recordAudioDateTime, feedbackTypes[feedbackNumber], i);
+        s.audioUrl = url;
+        i++;
       }
     }
 
+    recordAudioDateTime = "";
+
     print(sections);
-    // TODO: get experimentee ObjectId from experimentee api and match feedback Type
-    await setHistory(
-        '63539c56496127a5db0e7fea', totalScore, sections, 'afterQuestion');
+    await setHistory(currentExperimentee.id, totalScore, sections,
+        feedbackTypes[feedbackNumber]);
 
     setState(() {
       loading = true;
     });
-
-    Navigator.pushNamed(context, ResultScreen.routeName);
-
     sections = [];
     totalScore = 0;
+
+    Navigator.pushNamed(context, ResultScreen.routeName);
   }
 
   @override
@@ -80,12 +78,22 @@ class _BodyState extends State<Body> {
             body: SafeArea(
               child: Align(
                 alignment: Alignment.center,
-                child: Column(mainAxisSize: MainAxisSize.max, children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
-                ]),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Text("สิ้นสุดการทดสอบที่ ${feedbackNumber + 1}",
+                          style: textTheme().headlineMedium.apply(
+                                color: const Color(0xFF3F3F3F),
+                              )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
+                    ]),
               ),
             ),
           );
