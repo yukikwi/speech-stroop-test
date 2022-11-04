@@ -52,7 +52,6 @@ Future<AudioUrls> uploadAudio(String directory, String dateTime) async {
   var res = await http.post(Uri.parse("${APIPath.baseUrl}/upload/stroop_audio"),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
       },
       body: jsonEncode(req));
 
