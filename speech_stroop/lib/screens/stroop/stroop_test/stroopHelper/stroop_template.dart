@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroopHelper/stroop_combination.dart';
 
 List<int> stroopLevels = [];
@@ -31,16 +32,16 @@ List<StroopQuestion> buildTest(bool isTutorial, [int sectionNumber]) {
       incongruent = 3;
       break;
     case 1:
-      congruent = 14;
-      incongruent = 6;
+      congruent = (stroopQuestionsAmount * 0.7).round();
+      incongruent = (stroopQuestionsAmount * 0.3).round();
       break;
     case 2:
-      congruent = 10;
-      incongruent = 10;
+      congruent = (stroopQuestionsAmount * 0.5).round();
+      incongruent = (stroopQuestionsAmount * 0.5).round();
       break;
     case 3:
-      congruent = 6;
-      incongruent = 14;
+      congruent = (stroopQuestionsAmount * 0.3).round();
+      incongruent = (stroopQuestionsAmount * 0.7).round();
       break;
     default:
   }
