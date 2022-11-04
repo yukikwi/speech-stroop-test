@@ -9,9 +9,8 @@ router.use(express.urlencoded({ extended: true }))
 
 router.post('/stroop_audio', async (req, res) => {
   try {
-    let audioFile = req.files.audioFile as UploadedFile
-    audioFile.mv(`${process.cwd()}/uploads/` + audioFile.name);
-    res.json({ result: "saved" })
+    const result = uploadStroopAudioFile(req)
+    res.json({ result: result })
   } catch (err) {
     console.log('err:\t', err)
     res.status(400).send(err)

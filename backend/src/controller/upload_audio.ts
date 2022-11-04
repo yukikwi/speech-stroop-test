@@ -1,24 +1,23 @@
-import { ObjectId } from 'mongoose'
+import { UploadedFile } from 'express-fileupload';
 
 export interface AudioDTO {
   directory: string
   dateTime: string
 }
 
-export async function uploadStroopAudioFile(
-  audioFile: AudioDTO,
-): Promise<string[]> {
-  let urls: string[] = []
-
-  for (let i = 0; i < 3; i++) {
-    let fileName: string = `${audioFile.dateTime}_section-${i + 1}`
-
-    let fileNameWAV: string = `${fileName}.wav`
-
-    let filePathWAV: string = `${audioFile.directory}/${fileNameWAV}`
-
-    urls.push(filePathWAV)
+export function uploadStroopAudioFile(
+  request:Express.Request,
+): String {
+  
+  let audioFile = request.files.audioFile as UploadedFile
+  try{
+    audioFile.mv(`${process.cwd()}/uploads/` + audioFile.name);
+    return "success"
+  }
+  catch(err){
+    console.error(err)
+    throw new Error('uploadStroopAudioFile: fail to saved file');
   }
 
-  return urls
+  
 }
