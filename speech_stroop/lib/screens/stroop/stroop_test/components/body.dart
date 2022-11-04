@@ -135,9 +135,6 @@ class _BodyState extends State<Body> {
                                   initQuestions(testTemplate);
                                   stopwatchAudio.reset();
                                   stopwatchAudio.start();
-                                  if (!kIsWeb) {
-                                    recordAudio.getRecorderFn()();
-                                  }
                                   navigatePage();
                                 },
                               )),

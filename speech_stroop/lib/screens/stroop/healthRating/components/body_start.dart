@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -33,6 +34,9 @@ class _BodyState extends State<Body> {
     answered = -1;
 
     // await requsetPermission(Permission.microphone);
+    if (!kIsWeb) {
+      recordAudio.getRecorderFn()();
+    }
     Navigator.pushNamed(context, StroopTestScreen.routeName);
   }
 
