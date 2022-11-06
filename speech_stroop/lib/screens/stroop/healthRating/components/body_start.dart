@@ -34,9 +34,6 @@ class _BodyState extends State<Body> {
     answered = -1;
 
     // await requsetPermission(Permission.microphone);
-    if (!kIsWeb) {
-      recordAudio.getRecorderFn()();
-    }
     Navigator.pushNamed(context, StroopTestScreen.routeName);
   }
 

@@ -34,9 +34,6 @@ class _BodyState extends State<Body> {
   void startQuiz() {
     sectionNumber++;
     answered = -1;
-    if (!kIsWeb) {
-      recordAudio.getRecorderFn()();
-    }
 
     Navigator.pushNamed(context, StroopTestScreen.routeName);
   }

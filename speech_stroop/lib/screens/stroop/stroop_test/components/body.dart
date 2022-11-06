@@ -62,7 +62,15 @@ class _BodyState extends State<Body> {
         "recordAudioDateTime": recordAudio.datetime,
       });
 
-      recordAudio.openRecorder();
+      startRecordAudio();
+    }
+  }
+
+  Future<void> startRecordAudio() async {
+    await recordAudio.openRecorder();
+    if (!kIsWeb) {
+      print("execute start record command");
+      await recordAudio.getRecorderFn()();
     }
   }
 
@@ -276,7 +284,6 @@ class _BodyState extends State<Body> {
 
     Future.delayed(durationDelay, () {
       // end of each questions
-      speech.stop();
       setState(() {
         isListening = false;
       });
@@ -336,8 +343,11 @@ class _BodyState extends State<Body> {
       else if (answered == stroopQuestionsAmount - 1) {
         stopwatchAudio.stop();
         if (!kIsWeb) {
+          print("execute stop record command");
           recordAudio.getRecorderFn()();
         }
+
+        speech.stop();
 
         highestCorrectStack = correctStack > highestCorrectStack
             ? correctStack
