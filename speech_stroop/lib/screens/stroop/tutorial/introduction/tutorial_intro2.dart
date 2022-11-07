@@ -33,7 +33,27 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'แบบทดสอบจะแบ่งเป็น ',
+                    'แบบทดสอบมีทั้งหมด ',
+                    style: textTheme()
+                        .titleMedium
+                        .apply(color: Colors.black, fontSizeDelta: 2),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    '3 แบบทดสอบ',
+                    style: textTheme().titleMedium.apply(
+                        color: Colors.black,
+                        fontSizeDelta: 2,
+                        fontWeightDelta: 1),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'โดยแต่ละแบบทดสอบจะประกอบด้วย ',
                     style: textTheme()
                         .titleMedium
                         .apply(color: Colors.black, fontSizeDelta: 2),
@@ -60,7 +80,7 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    '20 ข้อ',
+                    '60 ข้อ',
                     style: textTheme().titleMedium.apply(
                         color: Colors.black,
                         fontSizeDelta: 2,
@@ -75,7 +95,7 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    '2.5 วินาที',
+                    '5 วินาที',
                     style: textTheme().titleMedium.apply(
                         color: Colors.black,
                         fontSizeDelta: 2,
