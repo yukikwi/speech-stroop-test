@@ -4,7 +4,7 @@ import 'package:speech_stroop/enums.dart';
 import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/model/test_module/history.dart';
 import 'package:speech_stroop/model/test_module/section.dart';
-import 'package:speech_stroop/screens/home/home_screen.dart';
+import 'package:speech_stroop/screens/overview/overview_screen.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
 import 'package:speech_stroop/screens/stroop/result/components/section_score.dart';
 import 'package:speech_stroop/screens/stroop/result/components/total_score.dart';
@@ -67,7 +67,8 @@ class _BodyState extends State<Body> {
                             latestTestData = null,
                             latestTest = null,
 
-                            Navigator.pushNamed(context, HomeScreen.routeName)
+                            Navigator.pushNamed(
+                                context, OverviewScreen.routeName)
                           },
                       ButtonType.medium)
                   : PrimaryButton(
