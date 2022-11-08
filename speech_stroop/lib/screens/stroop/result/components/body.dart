@@ -74,14 +74,14 @@ class _BodyState extends State<Body> {
                   : PrimaryButton(
                       "ไปยังการทดสอบที่ ${feedbackNumber + 2}",
                       () => {
-                            //clear lates test
-                            feedbackNumber++,
-                            latestTestData = null,
-                            latestTest = null,
+                        //clear lates test
+                        feedbackNumber++,
+                        latestTestData = null,
+                        latestTest = null,
 
-                            Navigator.pushNamed(context, BreakScreen.routeName)
-                          },
-                      ButtonType.medium)
+                        Navigator.pushNamed(context, BreakScreen.routeName)
+                      },
+                    )
             ],
           ),
         )));

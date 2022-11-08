@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
+import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/test_module/health_scores.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/components/health_slider.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
@@ -41,32 +42,28 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
-      appBar: CustomAppBar(appbarTitle, true),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      key: scaffoldKey,
-      body: SafeArea(
-        child: Align(
-          alignment: Alignment.center,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const SizedBox(
-                  height: 60,
-                ),
-                Text("ถ้าพร้อมแล้ว...",
-                    style: textTheme().headlineMedium.apply(
-                          color: const Color(0xFF3F3F3F),
-                        )),
-                const SizedBox(
-                  height: 20,
-                ),
-                PrimaryButton(
-                    'เริ่มแบบทดสอบที่ ${feedbackNumber + 1} ส่วนที่ ${sectionNumber + 1}',
-                    () => startQuiz())
-              ]),
-        ),
-      ),
-    );
+        appBar: CustomAppBar(appbarTitle, true),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        key: scaffoldKey,
+        body: SafeArea(
+          child: Align(
+            alignment: Alignment.center,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  Text("ถ้าพร้อมแล้ว...",
+                      style: textTheme().headlineMedium.apply(
+                            color: const Color(0xFF3F3F3F),
+                          )),
+                  PrimaryButton(
+                      'เริ่มแบบทดสอบที่ ${feedbackNumber + 1} ส่วนที่ ${sectionNumber + 1}',
+                      () => startQuiz())
+                ]),
+          ),
+        ));
   }
 }

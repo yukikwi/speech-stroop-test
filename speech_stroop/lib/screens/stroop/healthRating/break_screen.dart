@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/components/body_start.dart'
     as start;
 import 'package:speech_stroop/screens/stroop/healthRating/components/body_break.dart'
@@ -22,7 +23,9 @@ class BreakScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-          padding: const EdgeInsets.all(8), child: mapBody[sectionNumber]),
+          padding: EdgeInsetsDirectional.fromSTEB(
+              8, 8, 8, deviceHeight(context) * 0.04),
+          child: mapBody[sectionNumber]),
     );
   }
 }

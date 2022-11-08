@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/components/loading_screen.dart';
+import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/audio.dart';
 import 'package:speech_stroop/model/test_module/experimental_history.dart';
 import 'package:speech_stroop/screens/stroop/result/result_screen.dart';
@@ -79,7 +80,7 @@ class _BodyState extends State<Body> {
               child: Align(
                 alignment: Alignment.center,
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       const SizedBox(
@@ -89,13 +90,9 @@ class _BodyState extends State<Body> {
                           style: textTheme().headlineMedium.apply(
                                 color: const Color(0xFF3F3F3F),
                               )),
-                      const SizedBox(
-                        height: 20,
-                      ),
                       PrimaryButton('แสดงผลลัพธ์', () => endQuiz())
                     ]),
               ),
-            ),
-          );
+            ));
   }
 }

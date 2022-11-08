@@ -66,35 +66,42 @@ class _ExperimentalSetTokenWidgetState extends State<ExperimentalSetToken> {
               appBar: const CustomAppBar('กรอกรหัสการทดลอง'),
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      deviceWidth(context) * 0.02,
+                      0,
+                      deviceWidth(context) * 0.025,
+                      deviceHeight(context) * 0.04),
                   child: Form(
                     key: formGlobalKey,
-                    child: Column(mainAxisSize: MainAxisSize.max, children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                        child: TextFormFieldCustom(
-                          tokenController,
-                          'Experimental code',
-                          TextInputType.text,
-                          (val) {
-                            if (val.isEmpty) {
-                              return 'โปรดระบุรหัสการทดลอง';
-                            }
-                            experimenteeId = val;
-                            return null;
-                          },
-                        ),
-                      ),
-                      FloatingButton(() => {
-                            if (formGlobalKey.currentState.validate())
-                              {
-                                setExperimenteeNumber(experimenteeId),
-                                Navigator.pushNamed(
-                                    context, IntroductionScreen.routeName)
-                              }
-                          })
-                    ]),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 15, 0, 0),
+                            child: TextFormFieldCustom(
+                              tokenController,
+                              'Experimental code',
+                              TextInputType.text,
+                              (val) {
+                                if (val.isEmpty) {
+                                  return 'โปรดระบุรหัสการทดลอง';
+                                }
+                                experimenteeId = val;
+                                return null;
+                              },
+                            ),
+                          ),
+                          FloatingButton(() => {
+                                if (formGlobalKey.currentState.validate())
+                                  {
+                                    setExperimenteeNumber(experimenteeId),
+                                    Navigator.pushNamed(
+                                        context, IntroductionScreen.routeName)
+                                  }
+                              })
+                        ]),
                   ),
                 ),
               ),

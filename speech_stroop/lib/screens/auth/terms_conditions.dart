@@ -46,10 +46,10 @@ class _TermsConditionsScreenWidgetState extends State<TermsConditionsScreen> {
       body: SafeArea(
         child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(deviceWidth(context) * 0.02,
-                0, deviceWidth(context) * 0.025, 0),
+                0, deviceWidth(context) * 0.025, deviceHeight(context) * 0.04),
             child: Stack(children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                       decoration: const BoxDecoration(

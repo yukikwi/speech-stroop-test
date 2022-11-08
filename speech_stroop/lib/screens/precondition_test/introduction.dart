@@ -7,6 +7,8 @@ import 'package:speech_stroop/screens/precondition_test/reading_test/intro.dart'
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
 import 'package:speech_stroop/theme.dart';
 
+import '../../constants.dart';
+
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({Key key}) : super(key: key);
   static String routeName = "/precondition_introduction";
@@ -24,8 +26,10 @@ class _IntroductionState extends State<IntroductionScreen> {
         key: scaffoldKey,
         appBar: const CustomAppBar('เตรียมความพร้อมก่อนทดสอบ'),
         body: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsetsDirectional.fromSTEB(deviceWidth(context) * 0.025,
+              0, deviceWidth(context) * 0.025, deviceHeight(context) * 0.04),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(height: 30),
               Text(
