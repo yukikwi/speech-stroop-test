@@ -8,9 +8,9 @@ class FeedbackSection extends StatelessWidget {
   static String routeName = "/feedback_section";
 
   final Map<int, PreferredSizeWidget> mapAppbarString = {
-    1: const CustomAppBar("แบบทดสอบที่ 1"),
-    2: const CustomAppBar("แบบทดสอบที่ 2"),
-    3: const CustomAppBar("แบบทดสอบที่ 3"),
+    1: const CustomAppBar("แบบทดสอบส่วนที่ 1"),
+    2: const CustomAppBar("แบบทดสอบส่วนที่ 2"),
+    3: const CustomAppBar("แบบทดสอบส่วนที่ 3"),
   };
 
   @override
