@@ -5,6 +5,7 @@ import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/screens/precondition_test/components/precon_box.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/intro.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_stroop/theme.dart';
 
 import '../../constants.dart';
@@ -24,7 +25,8 @@ class _IntroductionState extends State<IntroductionScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('เตรียมความพร้อมก่อนทดสอบ'),
+        appBar: CustomAppBar('เตรียมความพร้อมก่อนทดสอบ', false,
+            currentExperimentee.runingNumber),
         body: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(deviceWidth(context) * 0.025,
               0, deviceWidth(context) * 0.025, deviceHeight(context) * 0.04),

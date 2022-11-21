@@ -43,7 +43,8 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
-      appBar: CustomAppBar(appbarTitle),
+      appBar:
+          CustomAppBar(appbarTitle, false, currentExperimentee.runingNumber),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       key: scaffoldKey,
       body: SafeArea(

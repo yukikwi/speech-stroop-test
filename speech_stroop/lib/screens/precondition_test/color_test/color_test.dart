@@ -5,6 +5,7 @@ import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/model/precondition.dart';
 import 'package:speech_stroop/model/update_user.dart';
 import 'package:speech_stroop/model/user.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import 'package:speech_stroop/screens/precondition_test/color_test/fail_color_test.dart';
@@ -81,8 +82,10 @@ class _ColorTestScreenState extends State<ColorTestScreen> {
     return loading
         ? LoadingScreen()
         : Scaffold(
-            appBar:
-                isInterval ? null : const CustomAppBar('การทดสอบการจำแนกสี'),
+            appBar: isInterval
+                ? null
+                : CustomAppBar('การทดสอบการจำแนกสี', false,
+                    currentExperimentee.runingNumber),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton:

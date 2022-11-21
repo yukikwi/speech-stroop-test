@@ -6,6 +6,7 @@ import 'package:speech_stroop/model/user.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/color_test.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/intro.dart';
 import 'package:speech_stroop/screens/profile/profile_screen.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 
 class PassReadingTestScreen extends StatefulWidget {
   const PassReadingTestScreen({Key key}) : super(key: key);
@@ -22,7 +23,8 @@ class _PassReadingTestState extends State<PassReadingTestScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('ผ่านการทดสอบการอ่าน'),
+        appBar: CustomAppBar(
+            'ผ่านการทดสอบการอ่าน', false, currentExperimentee.runingNumber),
         body: Column(
           children: [
             Expanded(

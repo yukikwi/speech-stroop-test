@@ -6,6 +6,7 @@ import 'package:speech_stroop/components/button/secondary_button.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/screens/home/home_screen.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 
 class TutorialDoneScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -16,7 +17,8 @@ class TutorialDoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar('เสร็จสิ้น'),
+      appBar: CustomAppBar(
+          'เสร็จสิ้นการฝึกการทดสอบ', false, currentExperimentee.runingNumber),
       key: scaffoldKey,
       body: SafeArea(
         child: Center(

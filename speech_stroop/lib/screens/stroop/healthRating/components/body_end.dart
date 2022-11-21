@@ -72,7 +72,8 @@ class _BodyState extends State<Body> {
     return loading
         ? LoadingScreen()
         : Scaffold(
-            appBar: CustomAppBar(widget.appbarTitle),
+            appBar: CustomAppBar(
+                widget.appbarTitle, false, currentExperimentee.runingNumber),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             key: scaffoldKey,

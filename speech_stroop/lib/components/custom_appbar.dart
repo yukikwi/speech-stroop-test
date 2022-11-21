@@ -4,8 +4,10 @@ import 'package:speech_stroop/constants.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String text;
   final bool isLeading;
+  final String experimenteeNumber;
 
-  const CustomAppBar(this.text, [this.isLeading = false]);
+  const CustomAppBar(this.text,
+      [this.isLeading = false, this.experimenteeNumber = ""]);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -39,6 +41,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             fontWeight: FontWeight.w600,
             color: Color(0xFF37265F)),
       ),
+      actions: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 18, 25, 0),
+          child: Text(
+            experimenteeNumber,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: formText,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        )
+      ],
       elevation: 0,
       // leading: IconButton(
       //   icon: const Icon(

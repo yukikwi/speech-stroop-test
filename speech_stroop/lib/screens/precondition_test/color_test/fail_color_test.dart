@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/screens/precondition_test/color_test/color_test.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 
 import '../../../theme.dart';
 
@@ -21,7 +22,8 @@ class _FailColorTestState extends State<FailColorTestScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: CustomAppBar('ไม่ผ่านการทดสอบการจำแนกสี'),
+        appBar: CustomAppBar('ไม่ผ่านการทดสอบการจำแนกสี', false,
+            currentExperimentee.runingNumber),
         body: Column(
           children: [
             Expanded(

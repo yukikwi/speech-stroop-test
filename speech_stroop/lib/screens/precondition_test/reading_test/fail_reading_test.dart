@@ -4,6 +4,7 @@ import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/screens/precondition_test/reading_test/reading_test.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_stroop/theme.dart';
 
 class FailReadingTestScreen extends StatefulWidget {
@@ -21,7 +22,8 @@ class _FailReadingTestState extends State<FailReadingTestScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('ไม่ผ่านการทดสอบการอ่าน'),
+        appBar: CustomAppBar(
+            'ไม่ผ่านการทดสอบการอ่าน', false, currentExperimentee.runingNumber),
         body: Column(
           children: [
             Padding(

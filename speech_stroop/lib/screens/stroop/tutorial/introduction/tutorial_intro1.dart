@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/floating_button.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_stroop/screens/stroop/tutorial/components/example_box.dart';
 import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro2.dart';
 import 'package:speech_stroop/theme.dart';
@@ -21,7 +22,8 @@ class _TutorialIntroduction1State extends State<TutorialIntroduction1Screen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('วิธีการทดสอบ', true),
+        appBar: CustomAppBar(
+            'วิธีการทดสอบ', true, currentExperimentee.runingNumber),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

@@ -5,6 +5,7 @@ import 'package:speech_stroop/components/button/floating_button.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
 import 'package:speech_stroop/components/microphone_test/microphone_test.dart';
 import 'package:speech_stroop/screens/home/components/body.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_stroop/screens/stroop/tutorial/components/sliderExample_box.dart';
 import 'package:speech_stroop/theme.dart';
 
@@ -23,7 +24,8 @@ class _TutorialIntroduction3State extends State<TutorialIntroduction3Screen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('วิธีการทดสอบ'),
+        appBar: CustomAppBar(
+            'วิธีการทดสอบ', false, currentExperimentee.runingNumber),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

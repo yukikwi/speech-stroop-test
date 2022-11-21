@@ -5,7 +5,8 @@ import 'package:speech_stroop/constants.dart';
 import 'package:speech_stroop/components/button/mic_button.dart';
 import 'package:speech_stroop/screens/home/components/body.dart';
 import 'package:speech_stroop/screens/stroop/healthRating/break_screen.dart';
-import 'package:speech_stroop/screens/stroop/tutorial/test/tutorial_test.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
+import 'package:speech_stroop/screens/stroop/tutorial/introduction/tutorial_intro1.dart';
 import 'package:speech_stroop/theme.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -44,7 +45,8 @@ class _MicrophoneTestScreenState extends State<MicrophoneTestScreen> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
-      appBar: const CustomAppBar('การทดสอบไมโครโฟน', true),
+      appBar: CustomAppBar(
+          'การทดสอบไมโครโฟน', true, currentExperimentee.runingNumber),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: MicButton(isListening, listen),
       key: scaffoldKey,
@@ -118,7 +120,8 @@ class _MicrophoneTestScreenState extends State<MicrophoneTestScreen> {
           });
           Future.delayed(const Duration(milliseconds: 1500), () {
             dstMicTest == 'tutorial'
-                ? Navigator.pushNamed(context, TutorialTestScreen.routeName)
+                ? Navigator.pushNamed(
+                    context, TutorialIntroduction1Screen.routeName)
                 : Navigator.pushNamed(context, BreakScreen.routeName);
           });
         } else {

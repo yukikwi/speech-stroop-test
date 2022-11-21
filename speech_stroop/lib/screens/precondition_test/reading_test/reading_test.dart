@@ -6,6 +6,7 @@ import 'package:speech_stroop/model/precondition.dart';
 import 'package:speech_stroop/model/update_user.dart';
 import 'package:speech_stroop/model/user.dart';
 import 'package:speech_stroop/screens/stroop/stroop_test/stroopHelper/speech_check.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import 'package:speech_stroop/screens/precondition_test/reading_test/fail_reading_test.dart';
@@ -82,7 +83,10 @@ class _ReadingTestScreenState extends State<ReadingTestScreen> {
     return loading
         ? LoadingScreen()
         : Scaffold(
-            appBar: isInterval ? null : const CustomAppBar('การทดสอบการอ่าน'),
+            appBar: isInterval
+                ? null
+                : CustomAppBar(
+                    'การทดสอบการอ่าน', false, currentExperimentee.runingNumber),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton:

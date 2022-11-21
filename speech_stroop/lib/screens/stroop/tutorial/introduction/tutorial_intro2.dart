@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_stroop/components/custom_appbar.dart';
 import 'package:speech_stroop/components/button/floating_button.dart';
+import 'package:speech_stroop/screens/stroop/stroop_test/stroop_test.dart';
 import 'package:speech_stroop/screens/stroop/tutorial/components/colorList_box.dart';
+import 'package:speech_stroop/screens/stroop/tutorial/test/tutorial_test.dart';
 import 'package:speech_stroop/theme.dart';
 import 'package:speech_stroop/components/button/primary_button.dart';
-import 'package:speech_stroop/components/microphone_test/microphone_test.dart';
 import 'package:speech_stroop/screens/home/components/body.dart';
 
 class TutorialIntroduction2Screen extends StatefulWidget {
@@ -23,7 +24,8 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
         key: scaffoldKey,
-        appBar: const CustomAppBar('วิธีการทดสอบ'),
+        appBar: CustomAppBar(
+            'วิธีการทดสอบ', false, currentExperimentee.runingNumber),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -146,11 +148,11 @@ class _TutorialIntroduction2State extends State<TutorialIntroduction2Screen> {
                 ],
               ),
               PrimaryButton(
-                  'เริ่มทดลองทำ',
+                  'แบบทดสอบต่อไป',
                   () => {
                         dstMicTest = 'tutorial',
                         Navigator.pushNamed(
-                            context, MicrophoneTestScreen.routeName)
+                            context, TutorialTestScreen.routeName)
                       }),
               FloatingButton(() {}, true, false),
             ],
