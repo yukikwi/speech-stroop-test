@@ -119,10 +119,7 @@ class _MicrophoneTestScreenState extends State<MicrophoneTestScreen> {
             recogWord = '';
           });
           Future.delayed(const Duration(milliseconds: 1500), () {
-            dstMicTest == 'tutorial'
-                ? Navigator.pushNamed(
-                    context, TutorialIntroduction1Screen.routeName)
-                : Navigator.pushNamed(context, BreakScreen.routeName);
+            Navigator.pushNamed(context, TutorialIntroduction1Screen.routeName);
           });
         } else {
           setState(() {
