@@ -66,6 +66,9 @@ class _BodyState extends State<Body> {
                         //clear lates test
                         latestTestData = null,
                         latestTest = null,
+                        currentExperimentee = null,
+                        feedbackNumber = 0,
+                        feedbackTypes = ["", "", ""],
 
                         Navigator.pushNamed(context, OverviewScreen.routeName)
                       },
