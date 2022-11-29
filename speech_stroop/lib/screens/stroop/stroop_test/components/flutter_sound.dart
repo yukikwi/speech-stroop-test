@@ -109,24 +109,9 @@ class RecordAudio {
   }
 
   Future<void> resumeRecord() async {
-    print("resumeRecord");
-    assert(mRecorderIsInited);
-    var sink = await loadFile();
-    var recordingDataController = StreamController<Food>();
-    mRecordingDataSubscription =
-        recordingDataController.stream.listen((buffer) {
-      print("resume: push new food");
-      if (buffer is FoodData) {
-        sink.add(buffer.data);
-      }
-    });
-    isRecording = true;
-    await mRecorder.startRecorder(
-      toStream: recordingDataController.sink,
-      codec: Codec.pcm16,
-      numChannels: 1,
-      sampleRate: tSampleRate,
-    );
+    // push old data
+    await mRecorder.pauseRecorder();
+    await mRecorder.resumeRecorder();
   }
 
   Future<void> stopRecorder() async {
