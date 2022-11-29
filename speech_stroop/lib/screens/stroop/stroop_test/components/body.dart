@@ -284,6 +284,7 @@ class _BodyState extends State<Body> {
 
     Future.delayed(durationDelay, () {
       // end of each questions
+      speech.stop();
       setState(() {
         isListening = false;
       });
@@ -331,6 +332,10 @@ class _BodyState extends State<Body> {
 
       // prepare for the next question
       if (answered < stroopQuestionsAmount - 1) {
+        if (!kIsWeb) {
+          print("execute resume record command");
+          recordAudio.resumeRecord();
+        }
         Future.delayed(durationDelayInterval, () async {
           setState(() {
             setNextQuestionValue();
@@ -346,8 +351,6 @@ class _BodyState extends State<Body> {
           print("execute stop record command");
           recordAudio.getRecorderFn()();
         }
-
-        speech.stop();
 
         highestCorrectStack = correctStack > highestCorrectStack
             ? correctStack

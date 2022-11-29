@@ -35,6 +35,16 @@ class RecordAudio {
     return '${feedback}_${datetime}_section-$section';
   }
 
+  Future<IOSink> loadFile() async {
+    pcmPath = await getFilePathPCM();
+    var outputFile = File(pcmPath);
+    if (outputFile.existsSync()) {
+      return outputFile.openWrite();
+    }
+    // if file not exist -> createFile
+    return await createFile();
+  }
+
   Future<IOSink> createFile() async {
     pcmPath = await getFilePathPCM();
     var outputFile = File(pcmPath);
@@ -84,6 +94,28 @@ class RecordAudio {
     var recordingDataController = StreamController<Food>();
     mRecordingDataSubscription =
         recordingDataController.stream.listen((buffer) {
+      print("record: push new food");
+      if (buffer is FoodData) {
+        sink.add(buffer.data);
+      }
+    });
+    isRecording = true;
+    await mRecorder.startRecorder(
+      toStream: recordingDataController.sink,
+      codec: Codec.pcm16,
+      numChannels: 1,
+      sampleRate: tSampleRate,
+    );
+  }
+
+  Future<void> resumeRecord() async {
+    print("resumeRecord");
+    assert(mRecorderIsInited);
+    var sink = await loadFile();
+    var recordingDataController = StreamController<Food>();
+    mRecordingDataSubscription =
+        recordingDataController.stream.listen((buffer) {
+      print("resume: push new food");
       if (buffer is FoodData) {
         sink.add(buffer.data);
       }
